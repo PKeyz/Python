@@ -3,6 +3,7 @@ Hangman Game
 """
 
 """
+IDEA:::
 1.have a list of random words and choose one from the list to play the game
 2.hangman ascii art for print / create a list of hangman symbols to iterate over
 3.Ask user input for letter 
@@ -13,6 +14,12 @@ Hangman Game
 @each letter toLowerCase() in both word array and input for comparisson
 @display 1st letter asCapitalLetter()
 @if more than 1 letter input - counter +1, if letter = number - counter +1 
+"""
+
+"""
+TO-DO'S & BUGS & ADAPTATIONS:::
+1.
+
 """
 import random
 
@@ -116,7 +123,7 @@ print(f"The word is: {underscores}\n")
 
 #3.Ask user input for letter 
 
-user_letter = input("Guess a letter: ").lower()
+#user_letter = input("Guess a letter: ").lower()
 
 #if more than 1 letter input - counter +1, if letter = number - counter +1 
 # while counter < hangman[]  Guess a letter: if letter in word : show all instances / else: counter +1 , print hangman[counter]
@@ -127,18 +134,21 @@ user_letter = input("Guess a letter: ").lower()
 
 while counter in range(0,8):
 
+  user_letter = input("Guess a letter: ").lower()
 #check for letters in random_word
   if user_letter in random_array:
     for letter_iterator in range (0,len(random_array)):
       if user_letter == random_array[letter_iterator]:
         underscores_array[letter_iterator] = user_letter
-        print()  
+        underscores = "".join(underscores_array)
+        print(underscores)  
   else:
     counter += 1
     print(HANGMANPICS[counter])      
-    if counter == 7:
+    if counter == 6:
       print("You've lost!\nGame Over!")
-    continue
+      break
+  continue
 
 
 
