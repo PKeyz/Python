@@ -18,7 +18,11 @@ IDEA:::
 
 """
 TO-DO'S & BUGS & ADAPTATIONS:::
-1.
+1.for len(random_array) -> create an array with according length AND each index == index value (e.g [0,1,2,...])
+  each time the user makes a right choice and new letters are displayed, the displayed index number is deleted from the starting array.
+  the longer the word, the more it makes sense to NOT iterate over the whole word, even when lot's of letters are already found.
+  each next time you only check for the remaining closed values and ignore the found ones.
+  -> ideally this will reduce the amount of loops
 
 """
 import random
