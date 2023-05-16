@@ -87,6 +87,8 @@ HANGMANPICS = ['''
       |
 =========''']
 
+
+
 #introduce the game
 print("""
 We're playing:
@@ -99,6 +101,8 @@ We're playing:
                     __/ |                      
                    |___/                       
 """)
+
+
 #counter to follow up with the game
 counter = 0
 
@@ -125,7 +129,7 @@ while counter in range(0,8):
 
 #check for letters in random_word
   if user_letter in random_array:
-    for letter_iterator in range (0,len(random_array)-1):
+    for letter_iterator in range (0,len(random_array)):
       if user_letter == random_array[letter_iterator]:
         underscores_array[letter_iterator] = user_letter
         print()  
@@ -134,7 +138,7 @@ while counter in range(0,8):
     print(HANGMANPICS[counter])      
     if counter == 7:
       print("You've lost!\nGame Over!")
-
+    continue
 
 
 
