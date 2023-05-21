@@ -23,7 +23,8 @@ TO-DO'S & BUGS & ADAPTATIONS:::
   the longer the word, the more it makes sense to NOT iterate over the whole word, even when lot's of letters are already found.
   each next time you only check for the remaining closed values and ignore the found ones.
   -> ideally this will reduce the amount of loops
-
+2.add a list of letters already used, if user prints this letter again he doesn't loose a life (counter += 0) and the loop continues
+3.
 """
 import random
 
