@@ -149,6 +149,7 @@ while counter in range(0,7):
         underscores = "".join(underscores_array)
         if underscores_array == random_array:
           print("You've won!")
+          counter = 0
           break
         
   else:
@@ -158,7 +159,7 @@ while counter in range(0,7):
       print(f"You've lost!\nGame Over!\nThe word is: {random_word}")
       counter = 0
       break
-  print(f"The word is: {underscores}")
+  print(f"The word is: {underscores}\n")
   continue
 
 
