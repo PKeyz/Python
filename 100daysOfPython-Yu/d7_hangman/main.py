@@ -42,6 +42,7 @@ word_list=["bikes","crook","year","idea","birthday","fairies","wish","guide","dr
             "rhino","salmon","seal","shark","sheep","skunk","sloth","snake","spider","stork","swan",
             "tiger","toad","trout","turkey","turtle","weasel","whale","wolf","wombat","zebra"]
 random_number = random.randint(0,len(word_list)-1)
+#random_number = random.choice(word_list) is a viable alternative option for random_word directly
 
 random_word = word_list[random_number]
 
@@ -138,7 +139,7 @@ underscores_array = list(underscores)
 
 
 
-while counter in range(0,7):
+while counter in range(0,6):
 
   user_letter = input("Guess a letter: ").lower()
 #check for letters in random_word
@@ -149,7 +150,8 @@ while counter in range(0,7):
         underscores = "".join(underscores_array)
         if underscores_array == random_array:
           print("You've won!")
-          counter = 0
+          #counter = 0
+          #random_word
           break
         
   else:
@@ -158,9 +160,10 @@ while counter in range(0,7):
     if counter == 6:
       print(f"You've lost!\nGame Over!\nThe word is: {random_word}")
       counter = 0
+      #random_word
       break
   print(f"The word is: {underscores}\n")
-  continue
+  #continue
 
 
 
