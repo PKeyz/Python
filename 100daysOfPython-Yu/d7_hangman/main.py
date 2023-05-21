@@ -156,8 +156,9 @@ while counter in range(0,7):
     print(HANGMANPICS[counter])  
     if counter == 6:
       print(f"You've lost!\nGame Over!\nThe word is: {random_word}")
+      counter = 0
       break
-  print(underscores)  
+  print(f"The word is: {underscores}")
   continue
 
 
