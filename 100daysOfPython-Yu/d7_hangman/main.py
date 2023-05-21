@@ -138,7 +138,7 @@ underscores_array = list(underscores)
 
 
 
-while counter in range(0,8):
+while counter in range(0,7):
 
   user_letter = input("Guess a letter: ").lower()
 #check for letters in random_word
