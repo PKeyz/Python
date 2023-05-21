@@ -44,6 +44,7 @@ word_list=["bikes","crook","year","idea","birthday","fairies","wish","guide","dr
 random_number = random.randint(0,len(word_list)-1)
 
 random_word = word_list[random_number]
+
 random_array = list(random_word)
 #2.hangman ascii art for print / create a list of hangman symbols to iterate over
 
@@ -122,8 +123,9 @@ print(HANGMANPICS[counter])
 
 #4.display amount of "_" for len(word)
 underscores = "_" * len(random_array)
+
 underscores_array = list(underscores)
-print(f"The word is: {underscores}\n")
+
 
 #3.Ask user input for letter 
 
@@ -145,13 +147,17 @@ while counter in range(0,8):
       if user_letter == random_array[letter_iterator]:
         underscores_array[letter_iterator] = user_letter
         underscores = "".join(underscores_array)
-        print(underscores)  
+        if underscores_array == random_array:
+          print("You've won!")
+          break
+        
   else:
     counter += 1
-    print(HANGMANPICS[counter])      
+    print(HANGMANPICS[counter])  
     if counter == 6:
-      print("You've lost!\nGame Over!")
+      print(f"You've lost!\nGame Over!\nThe word is: {random_word}")
       break
+  print(underscores)  
   continue
 
 
