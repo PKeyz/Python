@@ -27,7 +27,7 @@ TO-DO'S & BUGS & ADAPTATIONS:::
 3.
 """
 import random
-
+import os
 
 #1.have a list of random words and choose one from the list to play the game
 
@@ -143,6 +143,7 @@ underscores_array = list(underscores)
 while counter in range(0,6):
 
   user_letter = input("Guess a letter: ").lower()
+  os.system("cls")
 #check for letters in random_word
   if user_letter in random_array:
     for letter_iterator in range (0,len(random_array)):
