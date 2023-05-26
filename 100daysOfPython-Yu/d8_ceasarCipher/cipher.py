@@ -10,7 +10,7 @@ def encrypt(text,shift):
   cipher_array = []
   cipher_text = ""
   
-  for x in range(0,text_list):
+  for x in range(0,len(text_list)):
     index = alphabet.index(text_list[x])
     
     y = alphabet[index + shift]
