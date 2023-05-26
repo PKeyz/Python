@@ -17,17 +17,17 @@ def encrypt(text,shift):
   cipher_array = []
   cipher_text = ""
   
-  for x in range(0,len(text_list)):
-    index = alphabet.index(text_list[x])
+  for x in text_list:
+    index = alphabet.index(x)
 
     if (index + shift) >= len(alphabet):
       new_shift = (index + shift) - len(alphabet)
       y = alphabet[new_shift]
-      cipher_array.append(y)
+      cipher_array += y
     else:
       y = alphabet[index + shift]
     
-    cipher_array.append(y)
+    cipher_array += y
       
   cipher_text = "".join(cipher_array)
   print(f"The encoded text is {cipher_text}")
