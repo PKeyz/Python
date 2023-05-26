@@ -10,11 +10,15 @@ def encrypt(text,shift):
   cipher_array = []
   cipher_text = ""
   
-  for x in text_list:
-    index = alphabet.index(x)
+  for x in range(0,text_list):
+    index = alphabet.index(text_list[x])
+    
     y = alphabet[index + shift]
+    
     cipher_array.append(y)
-    cipher_text = "".join(cipher_array)
+    
+  cipher_text = "".join(cipher_array)
+  
   print(cipher_text)
   
     #TODO-2: Inside the 'encrypt' function, shift each letter of the 'text' forwards in the alphabet by the shift amount and print the encrypted text.  
