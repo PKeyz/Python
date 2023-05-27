@@ -23,7 +23,6 @@ def encrypt(text,shift):
     if (index + shift) >= len(alphabet):
       new_shift = (index + shift) - len(alphabet)
       y = alphabet[new_shift]
-      cipher_array += y
     else:
       y = alphabet[index + shift]
     
