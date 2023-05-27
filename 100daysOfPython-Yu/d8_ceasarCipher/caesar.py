@@ -11,10 +11,11 @@ def caesar(text, shift, direction):
             if (index + shift) >= len(alphabet):
                 new_shift = (index + shift) - len(alphabet)
                 y = alphabet[new_shift]
+                cipher_array += y
             else:
                 y = alphabet[index + shift]
-    
-        cipher_array += y
+                cipher_array += y
+        
         cipher_text = "".join(cipher_array)
         print(f"The encoded text is {cipher_text}")
     elif direction == "decode":
@@ -23,7 +24,7 @@ def caesar(text, shift, direction):
             index = alphabet.index(x)
             y = alphabet[index - shift]
             cipher_array += y
-            
+
         cipher_text = "".join(cipher_array)
         print(f"The encoded text is {cipher_text}")
     else:
