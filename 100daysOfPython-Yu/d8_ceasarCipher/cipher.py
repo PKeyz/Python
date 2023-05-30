@@ -1,8 +1,8 @@
 import art
 
-#TODO-1: Import and print the logo from art.py when the program starts.
+#TODO-1:DONE: Import and print the logo from art.py when the program starts.
 
-#TODO-2: What if the user enters a shift that is greater than the number of letters in the alphabet?
+#TODO-2:DONE: What if the user enters a shift that is greater than the number of letters in the alphabet?
 
 #TODO-3: What happens if the user enters a number/symbol/space?
     #Can you fix the code to keep the number/symbol/space when the text is encoded/decoded?
@@ -32,34 +32,37 @@ def caesar(text, shift, direction):
     text_list = list(text)
     cipher_array = []
     cipher_text = ""
-
-    if direction == "encode":
-  
-        for x in text_list:
-            index = alphabet.index(x)
-
-            if (index + shift) >= len(alphabet):
-                new_shift = (index + shift) - len(alphabet)
-                y = alphabet[new_shift]
-                cipher_array += y
-            else:
-                y = alphabet[index + shift]
-                cipher_array += y
+    working = "yes"
+    while (working == "yes"):
         
-        cipher_text = "".join(cipher_array)
-        print(f"The encoded text is {cipher_text}")
-    elif direction == "decode":
-        
-        for x in text_list:
-            index = alphabet.index(x)
-            y = alphabet[index - shift]
-            cipher_array += y
 
-        cipher_text = "".join(cipher_array)
-        print(f"The encoded text is {cipher_text}")
-    else:
-        print("INPUT WRONG, TRY AGAIN!")
+        if direction == "encode":
+    
+            for x in text_list:
+                index = alphabet.index(x)
 
+                if (index + shift) >= len(alphabet):
+                    new_shift = (index + shift) - len(alphabet)
+                    y = alphabet[new_shift]
+                    cipher_array += y
+                else:
+                    y = alphabet[index + shift]
+                    cipher_array += y
+            
+            cipher_text = "".join(cipher_array)
+            print(f"The encoded text is {cipher_text}")
+        elif direction == "decode":
+            
+            for x in text_list:
+                index = alphabet.index(x)
+                y = alphabet[index - shift]
+                cipher_array += y
+
+            cipher_text = "".join(cipher_array)
+            print(f"The encoded text is {cipher_text}")
+        else:
+            print("INPUT WRONG, TRY AGAIN!")
+        working = input("Type 'yes', if you want to go again. Otherwise type 'no'\n").lower()
 
 caesar(text,shift,direction)
 
