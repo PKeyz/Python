@@ -1,3 +1,5 @@
+import art
+
 #TODO-1: Import and print the logo from art.py when the program starts.
 
 #TODO-2: What if the user enters a shift that is greater than the number of letters in the alphabet?
@@ -16,7 +18,7 @@
 #Add some code so that the program continues to work even if the user enters a shift number greater than 26. 
 #Hint: Think about how you can use the modulus (%).
 
-
+print(art.logo)
 
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
