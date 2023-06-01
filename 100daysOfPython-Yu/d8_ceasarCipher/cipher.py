@@ -26,6 +26,11 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 text = input("Type your message:\n").lower()
 shift = int(input("Type the shift number:\n"))
+working = "yes"
+
+shift = shift % 26
+if shift == 0:
+    shift += 1
 
 #TODO-1: Combine the encrypt() and decrypt() functions into a single function called caesar(). 
 
@@ -33,37 +38,41 @@ def caesar(text, shift, direction):
     text_list = list(text)
     cipher_array = []
     cipher_text = ""
-    working = "yes"
-    while (working == "yes"):
 
-
-        if direction == "encode":
+    if direction == "encode":
     
-            for x in text_list:
-                index = alphabet.index(x)
-
-                if (index + shift) >= len(alphabet):
-                    new_shift = (index + shift) - len(alphabet)
-                    y = alphabet[new_shift]
-                    cipher_array += y
-                else:
-                    y = alphabet[index + shift]
-                    cipher_array += y
+        for x in text_list:
+            index = alphabet.index(x)
+            y = alphabet[index + shift]
+            cipher_array += y
+        
+        cipher_text = "".join(cipher_array)
+        print(f"The encoded text is {cipher_text}")
             
-            cipher_text = "".join(cipher_array)
-            print(f"The encoded text is {cipher_text}")
-        elif direction == "decode":
-            
-            for x in text_list:
-                index = alphabet.index(x)
-                y = alphabet[index - shift]
-                cipher_array += y
+    elif direction == "decode":
+        
+        for x in text_list:
+            index = alphabet.index(x)
+            y = alphabet[index - shift]
+            cipher_array += y
 
-            cipher_text = "".join(cipher_array)
-            print(f"The encoded text is {cipher_text}")
-        else:
-            print("INPUT WRONG, TRY AGAIN!")
-        working = input("Type 'yes', if you want to go again. Otherwise type 'no'\n").lower()
+        cipher_text = "".join(cipher_array)
+        print(f"The encoded text is {cipher_text}")
+    else:
+        print("INPUT WRONG, TRY AGAIN!")
+    
+    working = input("Type 'yes', if you want to go again. Otherwise type 'no'\n").lower()
+
+    if (working == "yes"):
+        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+        text = input("Type your message:\n").lower()
+        shift = int(input("Type the shift number:\n"))
+
+        shift = shift % 26
+        if shift == 0:
+            shift += 1
+        
+        caesar(text,shift,direction)
 
 caesar(text,shift,direction)
 
