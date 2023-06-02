@@ -27,3 +27,20 @@ for key in student_scores:
 
 # 🚨 Don't change the code below 👇
 print(student_grades)
+
+"""
+Experimenting with lists dicts , lists in dicts, dicts in lists
+
+travel_log = {
+    "France": {
+        "cities_visited": ["Paris","Lyon"],
+        "cities_liked" : ["the more sun the better!"]
+    },
+    "Germany":{
+        "cities_visited": ["Berlin","Frankfurt","Chemnitz"]
+    },
+}
+
+print(travel_log)
+
+"""
