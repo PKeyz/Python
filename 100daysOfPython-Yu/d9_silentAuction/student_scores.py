@@ -11,7 +11,7 @@ student_scores = {
 student_grades = {}
 
 #TODO-2: Write your code below to add the grades to student_grades.👇
-for key,value in student_scores:
+for key in student_scores:
     if student_scores[key] in range(91,100):
         grade_value = "Outstanding"
         student_grades[key] = grade_value
