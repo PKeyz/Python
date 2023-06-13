@@ -1,4 +1,4 @@
-from replit 
+import os
 
 logo = '''
                          ___________
@@ -33,7 +33,7 @@ while (next_bidder == "yes"):
   bidders = {name: bid_amount}
   next_bidder = input("Are there any other bidders? Type 'yes' or 'no' ")
   if (next_bidder == "yes"):
-    clear()
+    os.system('cls' if os.name == 'nt' else 'clear')
   else:
     print(f"The highest bidder is {highest_key} with a bid of ${highest_value}")
     #iterate over dict values
