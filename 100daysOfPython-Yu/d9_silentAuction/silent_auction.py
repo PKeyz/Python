@@ -1,4 +1,4 @@
-from replit import clear
+import os
 
 
 logo = '''
@@ -19,39 +19,42 @@ print(logo)
 print("Welcome to the secret auction program.")
 
 bidders = {} 
-other_bidders = "yes"
+next_bidder = "yes"
+highest_value = 0
 
-while (other_bidders == "yes"):
+while (next_bidder == "yes"):
   name = input("What is your name? ")
-  bid_amount = input("What's your bid? : $")
+  bid_amount = int(input("What's your bid? : $"))
   bidders = {name: bid_amount}
-  other_bidders = input("Are there any other bidders? Type 'yes' or 'no' ")
-  if (other_bidders == "yes"):
-    clear()
+  next_bidder = input("Are there any other bidders? Type 'yes' or 'no' ")
+  if (next_bidder == "yes"):
+    os.system('cls')
   else:
     #iterate over dict values
     #compare values until highes found
     #retrieve key and value
     #print highest key and value "The winner is [key] with a bid of $[value]."
     for key in bidders:
-      highest_key = key
-      highest_value = bidders[key]
-#If the other bidder increases the bid amount as asked by the auctioneer, he will be declared the winner. But if not, the first bidder will acquire the product or service.
-      if highest_value == bidders[key]:
-        second_bid = input(f"{key}, your bid is not the highest, do you want to increase         your bid? Enter 'yes' or 'no'. ")
+      if highest_value < bidders[key]:
+        highest_value = bidders[key]
+        continue
+      
+      elif highest_value == bidders[key]:
+        second_bid = input(f"{name}, your bid is not the highest, do you want to increase your bid? Enter 'yes' or 'no': ")
         if second_bid == "no":
-          continue
+            continue
         else:
-          alternative_bid = int(input(" "))
-          if highest_value < alternative_bid:
-            bidders[key] = alternative_bid
-            
+            alternative_bid = int(input("Enter a higher bid $"))
+            highest_value = alternative_bid
+            continue
       elif highest_value < bidders[key]:
         highest_key = key
-        highest_value = bidders[key]
-    print(highest_key + " " + highest_value)
+        highest_value = bidders[key]   
+    print(f"The highest bidder is {highest_key} with a bid of ${highest_value}")
 
-
-
+"""
+If the other bidder increases the bid amount as asked by the auctioneer,
+he will be declared the winner. But if not, the first bidder will acquire the product or service.
+"""  
 #for key in a_dict:
 #...     print(key, '->', a_dict[key])
