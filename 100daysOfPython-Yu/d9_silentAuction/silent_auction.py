@@ -30,7 +30,7 @@ while (next_bidder == "yes"):
     highest_key = name
     highest_value = bid_amount
   
-  bidders = {name: bid_amount}
+  bidders[name] = bid_amount
   next_bidder = input("Are there any other bidders? Type 'yes' or 'no' ")
   if (next_bidder == "yes"):
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -40,4 +40,5 @@ while (next_bidder == "yes"):
     #compare values until highes found
     #retrieve key and value
     #print highest key and value "The winner is [key] with a bid of $[value]."
+print(bidders)
    
