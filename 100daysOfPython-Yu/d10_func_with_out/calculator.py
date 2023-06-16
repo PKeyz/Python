@@ -1,5 +1,4 @@
 
-
 logo = """
  _____________________
 |  _________________  |
@@ -25,6 +24,7 @@ What's the next number?: INPUT
 3.0 * 5.0 = 15.0
 Type 'y' to continue calculating with 15.0, or type 'n' to start a new calculation: INPUT
 """
+
 def addition(a, b):
     """
     Taking two integers as inputs, adds them and returns a result value
@@ -82,13 +82,13 @@ def calculate(a, b, operation):
         else:
             is_proceeding = input("Wrong operation selected, press 'y' to continue, or any other button to cancel the program: ")
             if is_proceeding == "y":
-                is_calculating == True
+                is_calculating = True
                 return is_calculating
             else:
-                is_calculating == False
+                is_calculating = False
                 return is_calculating
             
-            
+print(logo)           
 
 is_continuing = True
 
@@ -99,11 +99,9 @@ while(is_continuing):
     operation = input("Pick an operation: ")
     b = input("What's the next number?: ")
 
-    calculate(a, b, operation)
+    result = calculate(a, b, operation)
 
-
-
-    print(f"")
+    print(f"{a} {operation} {b}")
 
     ask_to_continue = input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new calculation: ")
     ask_for_continuation(ask_to_continue)
