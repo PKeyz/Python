@@ -94,15 +94,15 @@ is_continuing = True
 
 while(is_continuing):
     
-    a = input("What's the first number?: ")
+    a = int(input("What's the first number?: "))
     print("+\n-\n/\n*\n")
     operation = input("Pick an operation: ")
-    b = input("What's the next number?: ")
+    b = int(input("What's the next number?: "))
 
     result = calculate(a, b, operation)
 
     print(f"{a} {operation} {b} = {result}")
 
-    ask_to_continue = input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new calculation: ")
+    ask_to_continue = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ")
     ask_for_continuation(ask_to_continue)
     
