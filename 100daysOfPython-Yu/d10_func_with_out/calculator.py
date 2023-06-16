@@ -101,7 +101,7 @@ while(is_continuing):
 
     result = calculate(a, b, operation)
 
-    print(f"{a} {operation} {b}")
+    print(f"{a} {operation} {b} = {result}")
 
     ask_to_continue = input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new calculation: ")
     ask_for_continuation(ask_to_continue)
