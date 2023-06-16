@@ -41,19 +41,21 @@ def multiplication(a, b):
     result = a * b
     return result
 
-def ask_for_continuation(is_continuing):
-    if is_continuing == "y":
-        return True
+def ask_for_continuation(ask_to_continue):
+    if ask_to_continue == "y":
+        is_continuing = True
+        return is_continuing
     else:
-        return False
+        is_continuing = False
+        return is_continuing
     
 
 is_continuing = True
 
-
 while(is_continuing):
     
-    ask_for_continuation()
+    ask_to_continue = input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new calculation: ")
+    ask_for_continuation(ask_to_continue)
     
 
 
@@ -62,4 +64,3 @@ print("+\n-\n/\n*\n")
 operation = input("Pick an operation: ")
 b = input("What's the next number?: ")
 print(f"")
-is_continuing = input("Type 'y' to continue calculating with 15.0, or type 'n' to start a new calculation: ")
