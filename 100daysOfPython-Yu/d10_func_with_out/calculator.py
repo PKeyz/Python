@@ -68,16 +68,27 @@ def calculate(a, b, operation):
     """
     Taking two integers and the operation string as inputs to calculate the result of the operation
     """
-    if operation == "+":
-        addition(a, b)
-    elif operation == "-":
-        subtraction(a, b)
-    elif operation == "/":
-        division(a, b)
-    elif operation == "*":
-        multiplication(a, b)
-    else:
-        print("Wrong operation selected, Try again\n")
+    is_calculating = True
+
+    while is_calculating:
+        if operation == "+":
+            addition(a, b)
+        elif operation == "-":
+            subtraction(a, b)
+        elif operation == "/":
+            division(a, b)
+        elif operation == "*":
+            multiplication(a, b)
+        else:
+            is_proceeding = input("Wrong operation selected, press 'y' to continue, or any other button to cancel the program: ")
+            if is_proceeding == "y":
+                is_calculating == True
+                return is_calculating
+            else:
+                is_calculating == False
+                return is_calculating
+            
+            
 
 is_continuing = True
 
