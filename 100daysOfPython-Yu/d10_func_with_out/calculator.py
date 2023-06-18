@@ -95,9 +95,19 @@ is_continuing = True
 while(is_continuing):
     
     a = int(input("What's the first number?: "))
+    if a != type(int):
+        a = int(input("Entered values is not a number, try again: "))
+    else:
+        print("This calculator only performs basic operations with numbers. You need a better calculator, closing.")
+        break
     print("+\n-\n/\n*\n")
     operation = input("Pick an operation: ")
     b = int(input("What's the next number?: "))
+    if b != type(int):
+        b = int(input("Entered values is not a number, try again: "))
+    else:
+        print("This calculator only performs basic operations with numbers. You need a better calculator, closing.")
+        break
 
     result = calculate(a, b, operation)
 
