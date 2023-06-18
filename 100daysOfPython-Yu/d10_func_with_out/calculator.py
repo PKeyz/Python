@@ -1,3 +1,10 @@
+"""
+variables
+"""
+is_continuing = True
+a = None
+b = None
+result = None
 
 logo = """
  _____________________
@@ -52,17 +59,6 @@ def multiplication(a, b):
     """
     result = a * b
     return result
-
-def ask_for_continuation(ask_to_continue):
-    """
-    Asks user input as string, if input is "y", returns is_continuing True, else False
-    """
-    if ask_to_continue == "y":
-        is_continuing = True
-        return is_continuing
-    else:
-        is_continuing = False
-        return is_continuing
     
 def calculate(a, b, operation):
     """
@@ -72,13 +68,21 @@ def calculate(a, b, operation):
 
     while is_calculating:
         if operation == "+":
-            addition(a, b)
+            result = addition(a, b)
+            return result
+            is_calculating = False
         elif operation == "-":
-            subtraction(a, b)
+            result = subtraction(a, b)
+            return result
+            is_calculating = False
         elif operation == "/":
-            division(a, b)
+            result = division(a, b)
+            return result
+            is_calculating = False
         elif operation == "*":
-            multiplication(a, b)
+            result = multiplication(a, b)
+            return result
+            is_calculating = False
         else:
             is_proceeding = input("Wrong operation selected, press 'y' to continue, or any other button to cancel the program: ")
             if is_proceeding == "y":
@@ -90,29 +94,28 @@ def calculate(a, b, operation):
             
 print(logo)           
 
-is_continuing = True
-
 while(is_continuing):
+    if a is None:
+        a = int(input("What's the first number?: "))
     
-    a = int(input("What's the first number?: "))
-    if a != type(int):
-        a = int(input("Entered values is not a number, try again: "))
-    else:
-        print("This calculator only performs basic operations with numbers. You need a better calculator, closing.")
-        break
     print("+\n-\n/\n*\n")
     operation = input("Pick an operation: ")
     b = int(input("What's the next number?: "))
-    if b != type(int):
-        b = int(input("Entered values is not a number, try again: "))
-    else:
-        print("This calculator only performs basic operations with numbers. You need a better calculator, closing.")
-        break
-
+    
     result = calculate(a, b, operation)
 
     print(f"{a} {operation} {b} = {result}")
 
-    ask_to_continue = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ")
-    ask_for_continuation(ask_to_continue)
+    ask_to_continue = input(f"Type 'y' to continue calculating with {result}, or type 'n' to exit: ")
     
+    if ask_to_continue == "y":
+        is_continuing = True
+        a = result
+        b = None 
+        result = None
+        
+    else:
+        is_continuing = False
+        a = None
+        b = None
+        result = None
