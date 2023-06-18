@@ -23,5 +23,18 @@ operations = {
     "*": multiplication,
     "/": division,  
 }
- 
-print(operations)
+#get input from user here
+num1 = int(input("What is the first number?: "))
+
+for key in operations:
+    print(key)
+operation_symbol = input("Pick an operation from the line above: ")
+
+num2 = int(input("What is your second number?: "))
+
+#call operation
+calculation_function = operations[operation_symbol]
+answer = calculation_function(num1, num2)
+
+#print result to screen
+print(f"{num1} {operation_symbol} {num2} = {answer}")
