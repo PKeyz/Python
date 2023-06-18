@@ -17,3 +17,11 @@ def multiplication(n1, n2):
 def division(n1, n2):
     return n1 / n2
 
+operations = {
+    "+": addition,
+    "-": subtraction,
+    "*": multiplication,
+    "/": division,  
+}
+ 
+print(operations)
