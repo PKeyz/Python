@@ -19,6 +19,27 @@ if hit_button:
     count new check_sum
 
 
+if hand > 21 --> bust (loose instantly)
+
+ace value 11 || 1
+
+player get's their cards first, if hand > 21 bust instantly *(loose first too)
+
+if hand_player == hand_dealer:
+    draw
+
+if hand_dealer < 17:
+    must draw card
+
+cards are list = []
+ace represented as 11
+
+if hand_player || hand_dealer contains 11 and hand > 21:
+    get ace position in hand
+    hand[x] = 1
+    hand_value -= 10
+
+
 prints:
 
 Your Cards[9,10]
