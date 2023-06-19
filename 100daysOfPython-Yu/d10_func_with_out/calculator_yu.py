@@ -41,18 +41,35 @@ operations = {
 }
 
 print(logo)
-#get input from user here
-num1 = int(input("What is the first number?: "))
 
-for key in operations:
-    print(key)
-operation_symbol = input("Pick an operation from the line above: ")
+def calculator():
+    #get input from user here
+    num1 = int(input("What is the first number?: "))
 
-num2 = int(input("What is your second number?: "))
+    for key in operations:
+        print(key)
 
-#call operation
-calculation_function = operations[operation_symbol]
-answer = calculation_function(num1, num2)
+    should_continue = True
 
-#print result to screen
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = int(input("What is your second number?: "))
+        #call operation
+        calculation_function = operations[operation_symbol]
+        first_answer = calculation_function(num1, num2)
+
+        #print result to screen
+        print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+
+        if (input(f"Type 'y' to continue calculating with {first_answer}, or type 'n' to exit.: ")) == 'y':
+            num1 = first_answer
+            num2 = None
+            first_answer = None
+        else:
+            should_continue = False
+            calculator()
+
+
+calculator()
