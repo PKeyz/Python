@@ -5,9 +5,10 @@ First ideas:
 
 Rules:
 deck of cards -> shuffle
-give card to player + card to dealer
 10,K,Q = value 10
 numbers = number_value
+
+give card to player + card to dealer
 
 def check_sum(card_value):
     if previous_answer + card_value <= 21:
@@ -84,9 +85,19 @@ logo = """
                    
 
 print(logo)
-
-deck = [11,2,3,4,5,6,7,8,9,10,10,10,10,10]
-
+#create original deck
+deck = [11,2,3,4,5,6,7,8,9,10,10,10,10]
+# deck of cards -> shuffle
 shuffled_deck = random.sample(deck, len(deck))
 
+#give card to player + card to dealer
+player_hand = []
+dealer_hand = []
+
+player_hand.append(shuffled_deck[0])
+dealer_hand.append(shuffled_deck[1])
+
+
 print(shuffled_deck)
+print(player_hand)
+print(dealer_hand)
