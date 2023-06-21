@@ -1,3 +1,5 @@
+import random
+
 """
 First ideas:
 
@@ -85,4 +87,6 @@ print(logo)
 
 deck = [11,2,3,4,5,6,7,8,9,10,10,10,10,10]
 
+shuffled_deck = random.sample(deck, len(deck))
 
+print(shuffled_deck)
