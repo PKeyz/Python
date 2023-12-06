@@ -9,7 +9,9 @@ deck of cards -> shuffle
 10,K,Q = value 10
 numbers = number_value
 
-give card to player + card to dealer
+
+Next task : dealing initial hand->> 
+give card to player + card to dealer + card to player + card to dealer [open] 
 
 def check_sum(card_value):
     if previous_answer + card_value <= 21:
@@ -104,6 +106,7 @@ class BlackJack:
         # deck of cards -> shuffle
         shuffled_deck = random.sample(originalDeck, len(originalDeck))
         
+        #set up a new bet and update local variables in-game
         new_values = functions.player_stake(player_bank, casino_bank)
         player_bank = new_values[0]
         casino_bank = new_values[1]
