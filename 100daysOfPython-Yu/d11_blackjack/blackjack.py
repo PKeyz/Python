@@ -1,4 +1,5 @@
 import random
+import functions
 
 """
 First ideas:
@@ -24,7 +25,7 @@ if hit_button:
 
 if hand > 21 --> bust (loose instantly)
 
-ace value 11 || 1
+ace value 1 || 11 if hand = 0 ace=11, elif hand+ 11 < 21 hand = hand +11 else ace=1 => hand + 1
 
 player get's their cards first, if hand > 21 bust instantly *(loose first too)
 
@@ -82,22 +83,46 @@ logo = """
       |  \/ K|                            _/ |                
       `------'                           |__/           
 """
-                   
-
-print(logo)
+player_bank = 400
+casino_bank = 0
+#player_stake = 0
 #create original deck
-deck = [11,2,3,4,5,6,7,8,9,10,10,10,10]
-# deck of cards -> shuffle
-shuffled_deck = random.sample(deck, len(deck))
-
-#give card to player + card to dealer
-player_hand = []
-dealer_hand = []
-
-player_hand.append(shuffled_deck[0])
-dealer_hand.append(shuffled_deck[1])
+originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
 
 
-print(shuffled_deck)
-print(player_hand)
-print(dealer_hand)
+class BlackJack:
+    
+
+    start_game = input('Print any key to start the game, print "no" to quit the game\n')
+
+    if start_game == 'no':
+        'You quit the game.'
+
+    else:
+        print(logo)
+        startGameScreen = print (f"You start with {player_bank} $")
+        # deck of cards -> shuffle
+        shuffled_deck = random.sample(originalDeck, len(originalDeck))
+        
+        new_values = functions.player_stake(player_bank, casino_bank)
+        player_bank = new_values[0]
+        casino_bank = new_values[1]
+    
+    
+
+    """_summary_
+    #give card to player + card to dealer
+    player_hand = []
+    dealer_hand = []
+
+    player_hand.append(shuffled_deck[0])
+    dealer_hand.append(shuffled_deck[1])
+
+
+    print(shuffled_deck)
+    print(player_hand)
+    print(dealer_hand)
+    """
+
+
+
