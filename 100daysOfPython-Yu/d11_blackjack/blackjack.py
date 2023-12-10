@@ -94,16 +94,14 @@ casino_bank = 0
 originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
 player_hand = []
 dealer_hand = []
-player_points = int
-dealer_points = int
 
 class BlackJack:
     
 
     start_game = input('Print any key to start the game, print "no" to quit the game\n')
 
-    if start_game == 'n': #or 'no' or "N":
-        print('You quit the game.')
+    if start_game == 'no':
+        'You quit the game.'
 
     else:
         print(logo)
@@ -115,21 +113,13 @@ class BlackJack:
         new_values = functions.player_stake(player_bank, casino_bank)
         player_bank = new_values[0]
         casino_bank = new_values[1]
-        #deal initial cards to player and dealer and update deck (remove cards from game deck)
-        initial_deal_hand_arr = functions.deal_hand(shuffled_deck, 4)
+        
+        initial_deal_hand_arr = functions.initial_deal_hand(shuffled_deck)
         player_hand.append(initial_deal_hand_arr[0])
         player_hand.append(initial_deal_hand_arr[2])
         dealer_hand.append(initial_deal_hand_arr[1])
         dealer_hand.append(initial_deal_hand_arr[3])
-        #count current points
-        player_points = functions.point_counter(player_hand)
-        dealer_points = functions.point_counter(dealer_hand)
         
-        print(f'Your cards are {player_hand}.')
-        print(f'Your have : {player_points} points\n')
-        
-        print(f'The open card of the dealer is [{dealer_hand[1]}]')
-        print(f'The dealer has : {player_points} points')
         shuffled_deck = functions.update_deck(shuffled_deck, 4)
         
     

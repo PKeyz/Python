@@ -15,7 +15,7 @@ def player_stake(player_bank,casino_bank):
     #current_balance = print(f'Your current balance is {player_bank}' + '$')
              
     while valid_choice:
-        amount_choosen = input('What is your deal? Print: "1", "5","25", "50", "100", "500", "all in"\n')
+        amount_choosen = input('What is your stake? Print: "1", "5","25", "50", "100", "500", "all in"\n')
     
         match amount_choosen:
             case "1":
@@ -53,16 +53,13 @@ def player_stake(player_bank,casino_bank):
     return new_values
 
 
-def deal_hand(shuffled_deck, number: int):
+def initial_deal_hand(shuffled_deck):
     """deals the first hand of the game in order: card to player + card to dealer + card to player + card to dealer
     @args: shuffled deck: arr
     player_hand: 0,1
     dealer_deck: 1,3
-    
-    possible update deal_hand(shuffled_deck, number: int) 
-    number for amount of cards , should be == to number for update_deck() directly after that
     """
-    hand_dealt = shuffled_deck[0:number]
+    hand_dealt = shuffled_deck[0:4]
     return hand_dealt
     
 def update_deck(shuffled_deck, number : int):
@@ -77,32 +74,6 @@ def update_deck(shuffled_deck, number : int):
     updated_shuffled_deck = shuffled_deck[number:]
     return updated_shuffled_deck
     
-def point_counter(hand_array):
-    """function counts the points of the hand (player/dealer)
-
-    Args:
-        hand_array (_type_): the cards in the player_hand/ dealer_hand arr
-
-    Returns:
-        int : point value
-        
-    ISSUE: for dealer_hand: first - closed card of the dealer SHOULD NOT not count, only the open card
-    """
-    point_counter_num = 0
-    
-    for cards in hand_array:
-        if cards in ['Jack','Queen','King']:
-            point_counter_num += 10
-        elif cards == 'Ace':
-            if (point_counter_num + 10 <= 21):
-                    point_counter_num += 10
-            else:
-                point_counter_num += 1
-        else:
-            point_counter_num += cards
-    return point_counter_num
-                
-                
 def hit_or_stand():
     """_summary_
     """
