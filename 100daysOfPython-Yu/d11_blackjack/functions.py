@@ -50,4 +50,30 @@ def player_stake(player_bank,casino_bank):
         elif (player_bank - amount_choosen) <= 0:
             print("You're betting too high! Please choose a new bet!")
     new_values = [player_bank,casino_bank]
-    return new_values  
+    return new_values
+
+
+def initial_deal_hand(shuffled_deck):
+    """deals the first hand of the game in order: card to player + card to dealer + card to player + card to dealer
+    @args: shuffled deck: arr
+    player_hand: 0,1
+    dealer_deck: 1,3
+    """
+    hand_dealt = shuffled_deck[0:4]
+    return hand_dealt
+    
+def update_deck(shuffled_deck, number : int):
+    """Def deletes the cards moved to player or dealer hand from deck
+
+    Args:
+        shuffled_deck (arr): full original shuffled deck of 52 cards
+        number (int) : number of cards to remove from old arr
+    Returns:
+        arr: returns arr of new deck minus initially dealt cards 
+    """
+    updated_shuffled_deck = shuffled_deck[number:]
+    return updated_shuffled_deck
+    
+def hit_or_stand():
+    """_summary_
+    """

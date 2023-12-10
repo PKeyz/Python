@@ -1,5 +1,7 @@
 import random
 import functions
+#import numpy as np
+
 
 """
 First ideas:
@@ -85,12 +87,13 @@ logo = """
       |  \/ K|                            _/ |                
       `------'                           |__/           
 """
-player_bank = 400
+player_bank = 1000
 casino_bank = 0
 #player_stake = 0
 #create original deck
 originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
-
+player_hand = []
+dealer_hand = []
 
 class BlackJack:
     
@@ -110,7 +113,15 @@ class BlackJack:
         new_values = functions.player_stake(player_bank, casino_bank)
         player_bank = new_values[0]
         casino_bank = new_values[1]
-    
+        
+        initial_deal_hand_arr = functions.initial_deal_hand(shuffled_deck)
+        player_hand.append(initial_deal_hand_arr[0])
+        player_hand.append(initial_deal_hand_arr[2])
+        dealer_hand.append(initial_deal_hand_arr[1])
+        dealer_hand.append(initial_deal_hand_arr[3])
+        
+        shuffled_deck = functions.update_deck(shuffled_deck, 4)
+        
     
 
     """_summary_
