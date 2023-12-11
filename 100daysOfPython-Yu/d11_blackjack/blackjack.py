@@ -124,7 +124,7 @@ class BlackJack:
         
         shuffled_deck = functions.update_deck(shuffled_deck, 4)
         
-        while (pla)
+        #while (pla)
 
     """_summary_
     #give card to player + card to dealer

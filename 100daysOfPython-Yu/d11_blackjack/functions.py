@@ -86,7 +86,8 @@ def count_points(player_hand,player_points: int):
                 player_value += 1
         else:
             player_value += cards
+    return player_value
 
-def stand():
+#def stand():
     
     
