@@ -10,28 +10,10 @@ Rules:
 deck of cards -> shuffle
 10,K,Q = value 10
 numbers = number_value
-
-
-Next task : dealing initial hand->> 
-give card to player + card to dealer + card to player + card to dealer [open] 
-
-def check_sum(card_value):
-    if previous_answer + card_value <= 21:
-        print("Player wins!")
-
-    else:
-        print("Dealer wins!")
-
-if hit_button:
-    get new card from deck
-    count new check_sum
+If you reach a Blackjack (21) your bet is multiplied by 3
 
 
 if hand > 21 --> bust (loose instantly)
-
-ace value 1 || 11 if hand = 0 ace=11, elif hand+ 11 < 21 hand = hand +11 else ace=1 => hand + 1
-
-player get's their cards first, if hand > 21 bust instantly *(loose first too)
 
 if hand_player == hand_dealer:
     draw
@@ -39,26 +21,9 @@ if hand_player == hand_dealer:
 if hand_dealer < 17:
     must draw card
 
-cards are list = []
-ace represented as 11
-
-if hand_player || hand_dealer contains 11 and hand > 21:
-    get ace position in hand
-    hand[x] = 1
-    hand_value -= 10
-
-
 prints:
 
-Your Cards[9,10]
-Computer's first card: 8
-Type 'y' to get another card, type 'n' to pass: 
-Your  final hand: [9,10]
-Computer's final hand: [8,10]
-You Win
-Do you want to play a game of blackjack? Type 'y' or 'n': 
-
-in python do while done with do block - and recursion inside loop
+Do you want to play another game of blackjack? Type 'y' or 'n': 
 
 The dealing of the cards in a game of Blackjack is as follows:
 
@@ -98,6 +63,7 @@ dealer_hand = []
 
 player_points = 0
 dealer_points = 0
+dealer_points_visible = 0
 
 player_turn = 0
 dealer_turn = 0
@@ -108,32 +74,57 @@ class BlackJack:
     
 
     start_game = input('Print any key to start the game, print "no" to quit the game\n')
+    game_play = True
+    
+    while game_play:
+        global player_bank
+        global casino_bank
+        global player_hand
+        global dealer_hand
+        global player_points
+        global dealer_points
+        
+        
+        if start_game == 'no':
+            'You quit the game.'
 
-    if start_game == 'no':
-        'You quit the game.'
-
-    else:
-        print(logo)
-        startGameScreen = print (f"You start with {player_bank} $")
-        # deck of cards -> shuffle
-        shuffled_deck = random.sample(originalDeck, len(originalDeck))
-        
-        #set up a new bet and update local variables in-game
-        new_values = functions.player_stake(player_bank, casino_bank)
-        player_bank = new_values[0]
-        casino_bank = new_values[1]
-        
-        initial_deal_hand_arr = functions.deal_hand(shuffled_deck,4)
-        player_hand.append(initial_deal_hand_arr[0])
-        player_hand.append(initial_deal_hand_arr[2])
-        dealer_hand.append(initial_deal_hand_arr[1])
-        dealer_hand.append(initial_deal_hand_arr[3])
-        
-        shuffled_deck = functions.update_deck(shuffled_deck, 4)
-        player_points = functions.count_points(player_hand, player_points)
-        dealer_points = functions.count_points(dealer_hand, dealer_points)
-        print(f'Your starting hand contains {player_hand} and you have {player_points} points')
-        print(f'Dealers open card is [{dealer_hand[1]}] and he has {dealer_points} points')
-        
-        #while (player_points <= 21) or (dealer_points <= 21):
+        else:
+            print(logo)
+            startGameScreen = print (f"You start with {player_bank} $")
+            # deck of cards -> shuffle
+            shuffled_deck = random.sample(originalDeck, len(originalDeck))
             
+            #set up a new bet and update local variables in-game
+            new_values = functions.player_stake(player_bank, casino_bank)
+            player_bank = new_values[0]
+            casino_bank = new_values[1]
+            
+            initial_deal_hand_arr = functions.deal_hand(shuffled_deck,4)
+            player_hand.append(initial_deal_hand_arr[0])
+            player_hand.append(initial_deal_hand_arr[2])
+            dealer_hand.append(initial_deal_hand_arr[1])
+            dealer_hand.append(initial_deal_hand_arr[3])
+            
+            shuffled_deck = functions.update_deck(shuffled_deck, 4)
+            player_points = functions.count_points(player_hand, player_points)
+            dealer_points = functions.count_points(dealer_hand, dealer_points)
+            print(f'Your starting hand contains {player_hand} and you have {player_points} points')
+            print(f'Dealers open card is [{dealer_hand[1]}] and he has {dealer_points} points')
+            
+            while (player_points <= 21) or (dealer_points <= 21):
+                
+            
+                input = ('Would you like to "Hit" or "Stand" ?')
+                if input == 'Hit':
+                    player_hand = functions.deal_hand(shuffled_deck, 1)
+                    shuffled_deck = functions.update_deck(shuffled_deck,1)
+                    print(f'Your starting hand contains {player_hand} and you have {player_points} points')
+                
+                    #dealers turn
+                    print('Dealers card value is under 17. Dealer "hits"')
+                    if(dealer_points < 17):
+                        dealer_hand = functions.deal_hand(shuffled_deck,1)
+                        shuffled_deck = functions.update_deck(shuffled_deck,1)
+                        print(f'Dealers open cards are [{dealer_hand}] and he has {dealer_points} points')
+                    else:
+                

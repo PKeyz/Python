@@ -75,9 +75,15 @@ def update_deck(shuffled_deck, number : int):
     return updated_shuffled_deck
 
 def count_points(player_hand, player_points):
+    global dealer_hand
+    
     player_value = player_points
     
+    if player_hand is dealer_hand:
+            
+    
     for cards in player_hand:
+
         if cards in ['Jack', 'Queen', 'King']:
             player_value += 10
         elif cards == 'Ace':
