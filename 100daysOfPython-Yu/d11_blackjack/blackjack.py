@@ -92,10 +92,17 @@ casino_bank = 0
 #player_stake = 0
 #create original deck
 originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
+
 player_hand = []
 dealer_hand = []
-player_turn : int
-dealer_turn : int 
+
+player_points = 0
+dealer_points = 0
+
+player_turn = 0
+dealer_turn = 0
+
+
 
 class BlackJack:
     
@@ -123,22 +130,10 @@ class BlackJack:
         dealer_hand.append(initial_deal_hand_arr[3])
         
         shuffled_deck = functions.update_deck(shuffled_deck, 4)
+        player_points = functions.count_points(player_hand, player_points)
+        dealer_points = functions.count_points(dealer_hand, dealer_points)
+        print(f'Your starting hand contains {player_hand} and you have {player_points} points')
+        print(f'Dealers open card is [{dealer_hand[1]}] and he has {dealer_points} points')
         
-        #while (pla)
-
-    """_summary_
-    #give card to player + card to dealer
-    player_hand = []
-    dealer_hand = []
-
-    player_hand.append(shuffled_deck[0])
-    dealer_hand.append(shuffled_deck[1])
-
-
-    print(shuffled_deck)
-    print(player_hand)
-    print(dealer_hand)
-    """
-
-
-
+        #while (player_points <= 21) or (dealer_points <= 21):
+            

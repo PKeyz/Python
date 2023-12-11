@@ -74,20 +74,21 @@ def update_deck(shuffled_deck, number : int):
     updated_shuffled_deck = shuffled_deck[number:]
     return updated_shuffled_deck
 
-def count_points(player_hand,player_points: int):
-    player_value = 0
+def count_points(player_hand, player_points):
+    player_value = player_points
+    
     for cards in player_hand:
         if cards in ['Jack', 'Queen', 'King']:
             player_value += 10
         elif cards == 'Ace':
-            if (player_points + 11) <= 21:
+            if (player_value + 11) <= 21:
                 player_value += 11
             else:
                 player_value += 1
         else:
             player_value += cards
     return player_value
-
+    
 #def stand():
     
     
