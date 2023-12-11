@@ -94,6 +94,8 @@ casino_bank = 0
 originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
 player_hand = []
 dealer_hand = []
+player_turn : int
+dealer_turn : int 
 
 class BlackJack:
     
@@ -114,7 +116,7 @@ class BlackJack:
         player_bank = new_values[0]
         casino_bank = new_values[1]
         
-        initial_deal_hand_arr = functions.initial_deal_hand(shuffled_deck)
+        initial_deal_hand_arr = functions.deal_hand(shuffled_deck,4)
         player_hand.append(initial_deal_hand_arr[0])
         player_hand.append(initial_deal_hand_arr[2])
         dealer_hand.append(initial_deal_hand_arr[1])
@@ -122,7 +124,7 @@ class BlackJack:
         
         shuffled_deck = functions.update_deck(shuffled_deck, 4)
         
-    
+        while (pla)
 
     """_summary_
     #give card to player + card to dealer

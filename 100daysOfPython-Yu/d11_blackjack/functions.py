@@ -53,13 +53,13 @@ def player_stake(player_bank,casino_bank):
     return new_values
 
 
-def initial_deal_hand(shuffled_deck):
-    """deals the first hand of the game in order: card to player + card to dealer + card to player + card to dealer
+def deal_hand(shuffled_deck, number:int):
+    """deals the first hand of the game in order: card to player + card to dealer + card to player + card to dealer || equals to "hit" with number = 1
     @args: shuffled deck: arr
     player_hand: 0,1
     dealer_deck: 1,3
     """
-    hand_dealt = shuffled_deck[0:4]
+    hand_dealt = shuffled_deck[0:number]
     return hand_dealt
     
 def update_deck(shuffled_deck, number : int):
@@ -73,7 +73,20 @@ def update_deck(shuffled_deck, number : int):
     """
     updated_shuffled_deck = shuffled_deck[number:]
     return updated_shuffled_deck
+
+def count_points(player_hand,player_points: int):
+    player_value = 0
+    for cards in player_hand:
+        if cards in ['Jack', 'Queen', 'King']:
+            player_value += 10
+        elif cards == 'Ace':
+            if (player_points + 11) <= 21:
+                player_value += 11
+            else:
+                player_value += 1
+        else:
+            player_value += cards
+
+def stand():
     
-def hit_or_stand():
-    """_summary_
-    """
+    
