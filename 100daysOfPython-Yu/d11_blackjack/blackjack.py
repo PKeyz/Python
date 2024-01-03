@@ -1,4 +1,4 @@
-import random
+import global_variables
 import functions
 #import numpy as np
 
@@ -40,35 +40,13 @@ to keep hitting more cards if the sum of dealer’s cards is less than 17.
 As soon as the sum of dealer’s cards is either 17 or more, the dealer is obliged to stand.
 According to the final sum of the cards, the winner is decided.
 
+1. check global_variables.dealer_cards_visible [1:] doesn't seem to work and shows only the second card
+2.update player_bank when getting into a new round
+3.null player hand when new round
+4.reshuffle the deck when new
+5. eventually move player_stake to global.neutral area and move to either casino, or player_bank after round.
+
 """
-
-logo = """
-.------.            _     _            _    _            _    
-|A_  _ |.          | |   | |          | |  (_)          | |   
-|( \/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
-| \  /|K /\  |     | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
-|  \/ | /  \ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
-`-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\\
-      |  \/ K|                            _/ |                
-      `------'                           |__/           
-"""
-player_bank = 1000
-casino_bank = 0
-#player_stake = 0
-#create original deck
-originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
-
-player_hand = []
-dealer_hand = []
-
-player_points = 0
-dealer_points = 0
-dealer_points_visible = 0
-
-player_turn = 0
-dealer_turn = 0
-
-
 
 class BlackJack:
     
@@ -77,54 +55,55 @@ class BlackJack:
     game_play = True
     
     while game_play:
-        global player_bank
-        global casino_bank
-        global player_hand
-        global dealer_hand
-        global player_points
-        global dealer_points
-        
         
         if start_game == 'no':
             'You quit the game.'
 
         else:
-            print(logo)
-            startGameScreen = print (f"You start with {player_bank} $")
-            # deck of cards -> shuffle
-            shuffled_deck = random.sample(originalDeck, len(originalDeck))
+            print(global_variables.logo)
+            startGameScreen = print (f"You start with {global_variables.player_bank} $")
+            print(f'Dealer starts with {global_variables.casino_bank}')
             
             #set up a new bet and update local variables in-game
-            new_values = functions.player_stake(player_bank, casino_bank)
-            player_bank = new_values[0]
-            casino_bank = new_values[1]
+            new_values = functions.player_stake(global_variables.player_bank, global_variables.casino_bank)
+            global_variables.player_bank = new_values[0]
+            global_variables.casino_bank = new_values[1]
             
-            initial_deal_hand_arr = functions.deal_hand(shuffled_deck,4)
-            player_hand.append(initial_deal_hand_arr[0])
-            player_hand.append(initial_deal_hand_arr[2])
-            dealer_hand.append(initial_deal_hand_arr[1])
-            dealer_hand.append(initial_deal_hand_arr[3])
+            initial_deal_hand_lst = functions.deal_hand(global_variables.shuffled_deck,4)
+            global_variables.player_hand.append(initial_deal_hand_lst[0])
+            global_variables.dealer_hand.append(initial_deal_hand_lst[1])
+            global_variables.player_hand.append(initial_deal_hand_lst[2])
+            global_variables.dealer_hand.append(initial_deal_hand_lst[3])
+            global_variables.dealer_hand_visible = global_variables.dealer_hand[1:]
+            shuffled_deck = functions.update_deck(global_variables.shuffled_deck, 4)
             
-            shuffled_deck = functions.update_deck(shuffled_deck, 4)
-            player_points = functions.count_points(player_hand, player_points)
-            dealer_points = functions.count_points(dealer_hand, dealer_points)
-            print(f'Your starting hand contains {player_hand} and you have {player_points} points')
-            print(f'Dealers open card is [{dealer_hand[1]}] and he has {dealer_points} points')
+            #global_variables.player_points = 
+            functions.count_points(global_variables.player_hand, global_variables.player_points)
+            #global_variables.dealer_points = 
+            functions.count_points(global_variables.dealer_hand, global_variables.dealer_points)
             
-            while (player_points <= 21) or (dealer_points <= 21):
-                
+            print(f'Your starting hand contains {global_variables.player_hand} and you have {global_variables.player_points} points')
+            print(f'Dealers open card is {global_variables.dealer_hand_visible} and he has {global_variables.dealer_points_visible} points')
             
-                input = ('Would you like to "Hit" or "Stand" ?')
-                if input == 'Hit':
-                    player_hand = functions.deal_hand(shuffled_deck, 1)
-                    shuffled_deck = functions.update_deck(shuffled_deck,1)
-                    print(f'Your starting hand contains {player_hand} and you have {player_points} points')
-                
-                    #dealers turn
-                    print('Dealers card value is under 17. Dealer "hits"')
-                    if(dealer_points < 17):
-                        dealer_hand = functions.deal_hand(shuffled_deck,1)
-                        shuffled_deck = functions.update_deck(shuffled_deck,1)
-                        print(f'Dealers open cards are [{dealer_hand}] and he has {dealer_points} points')
-                    else:
+            while (global_variables.player_points <= global_variables.player_bank):
+                if((global_variables.player_points > global_variables.point_limit) or (global_variables.dealer_points == global_variables.point_limit)):
+                    print('Bust! Dealer wins!')
+                    print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+                    functions.clean_values_rerun(False)
+                    # global_variables.player_bank -= global_variables.casino_bank
+                    # global_variables.dealer_bank += global_variables.casino_bank
+                    break
+                    #continue game?
+                    break
+                elif((global_variables.player_points == global_variables.point_limit) and (global_variables.dealer_points == global_variables.point_limit)):
+                    print('Push!')
+                    break
+                    #continue game?
+                elif((global_variables.player_points == global_variables.point_limit) and (global_variables.dealer_points < global_variables.point_limit)):
+                    print('Win!')
+                    break
+                    #continue game?
+                else:
+                    functions.hit_or_stand()
+            
                 
