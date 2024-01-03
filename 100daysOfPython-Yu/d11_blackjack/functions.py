@@ -1,57 +1,58 @@
+import random
 import global_variables
 
 new_values = []
 
-def player_stake(player_bank,casino_bank):
+def player_stake(player_bank,dealer_bank):
     """promt the user to put an amount of money from playerBank into current game
         and reduce the amount of playerBank according to the choosen amount
 
     Args:
         player_bank (int): current amount of money in players bank
-        casino_bank (int): current amount owned by casino
+        dealer_bank (int): current amount owned by casino
         
-        Return: array with updated values for [player_bank, casino_bank]
+        Return: array with updated values for [player_bank, dealer_bank]
     """
     global new_values
     valid_choice = True
     #current_balance = print(f'Your current balance is {player_bank}' + '$')
              
     while valid_choice:
-        amount_choosen = input('What is your stake? Print: "1", "5","25", "50", "100", "500", "all in"\n')
+        amount_choosen = int(input('What is your stake? Print: "1", "5","25", "50", "100", "500", or "999" for ALL IN\n'))
     
         match amount_choosen:
-            case "1":
+            case 1:
                 amount_choosen = 1
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
-            case "5":
+            case 5:
                 amount_choosen = 5
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
-            case "25":
+            case 25:
                 amount_choosen = 25
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
-            case "50":
+            case 50:
                 amount_choosen = 50
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
-            case "100":
+            case 100:
                 amount_choosen = 100
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
-            case "500":
+            case 500:
                 amount_choosen = 500
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
-            case "all in":
-                amount_choosen = player_bank
+            case 999:
+                amount_choosen = global_variables.player_bank
                 print(f"You chose to put {amount_choosen}" + "$ into this round")
                 
         if (global_variables.player_bank - amount_choosen) >= 0:
-            player_bank -= amount_choosen
-            casino_bank += amount_choosen
+            global_variables.game_stake = amount_choosen
             
-            current_balance = print(f'Your current balance is {player_bank}' + '$')
+            print(f'Your current balance is {global_variables.player_bank - global_variables.game_stake}' + '$')
             valid_choice = False
             break
-        elif (player_bank - amount_choosen) <= 0:
+        elif (global_variables.player_bank - amount_choosen) <= 0:
             print("You're betting too high! Please choose a new bet!")
-    new_values = [player_bank,casino_bank]
+            valid_choice = True
+    new_values = [global_variables.player_bank, global_variables.dealer_bank]
     return new_values
 
 
@@ -133,28 +134,55 @@ def count_points(player_hand, player_points):
             else:
                 global_variables.player_points += cards
     return global_variables.player_points
+   
+def remaining_points(player_points):
+    
+    if(player_points == global_variables.player_points):
+        global_variables.player_points_remaining = global_variables.point_limit - global_variables.player_points
+    elif(player_points == global_variables.dealer_points):
+        global_variables.dealer_points_remaining = global_variables.point_limit - global_variables.dealer_points
     
 def hit_or_stand():
     global_variables.player_turn = 1
     global_variables.dealer_turn = 0
     
     while((global_variables.player_points < global_variables.point_limit) and (global_variables.dealer_points < global_variables.point_limit)):
-        if((global_variables.player_turn == 1) and (global_variables.dealer_turn == 0)):
+        #if dealer stand and player stand - open all cards and count player with lowest difference to 21
+        if((global_variables.player_last_turn == False) and (global_variables.dealer_last_turn == False)):
+            remaining_points(global_variables.player_points)
+            remaining_points(global_variables.dealer_points)
+            if(global_variables.player_points_remaining < global_variables.dealer_points_remaining):
+                print('Win!')
+                print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+                
+            elif(global_variables.player_points_remaining > global_variables.dealer_points_remaining):
+                print('Bust! Dealer wins!')
+                print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+                
+            elif(global_variables.player_points_remaining == global_variables.dealer_points_remaining):
+                print('Push!')
+                print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+        elif((global_variables.player_turn == 1) and (global_variables.dealer_turn == 0)):
             
             hit_or_stand_choice = input('"Hit" or "Stand"?\n')
             
             if hit_or_stand_choice == 'Hit' or hit_or_stand_choice == 'hit' :
+                global_variables.player_last_turn = True
                 global_variables.player_hand += deal_hand(global_variables.shuffled_deck,1)
                 global_variables.shuffled_deck = update_deck(global_variables.shuffled_deck,1)
                 count_points(global_variables.player_hand,global_variables.player_points)
                 global_variables.player_turn = 0
                 global_variables.dealer_turn = 1
                 print(f'You drew {global_variables.player_hand[-1]}.Your hand contains {global_variables.player_hand} and you have {global_variables.player_points} points')
+                
             elif hit_or_stand_choice == 'Stand' or hit_or_stand_choice == 'stand':
+                global_variables.player_last_turn = False
                 global_variables.player_turn = 0
                 global_variables.dealer_turn = 1
+              
         elif((global_variables.player_turn == 0) and (global_variables.dealer_turn == 1)):
             if(global_variables.dealer_points < 17):
+                global_variables.dealer_last_turn = True
                 print('Dealers card value is under 17. Dealer "hits"')
                 global_variables.dealer_hand += deal_hand(global_variables.shuffled_deck,1)
                 global_variables.shuffled_deck = update_deck(global_variables.shuffled_deck,1)
@@ -163,22 +191,77 @@ def hit_or_stand():
         
                 global_variables.player_turn = 1
                 global_variables.dealer_turn = 0
+                
+                
             else:
+                print('Dealers card value over under 17. Dealer "stands"')
+                global_variables.dealer_last_turn = False
                 global_variables.player_turn = 1
                 global_variables.dealer_turn = 0
-#if dealer stand and player stand - open all cards and count player with lowest difference to 21
-def clean_values_rerun(loose_win:bool):
+                
+        #break
+def cash_out(is_player_win:bool):
+    if is_player_win:
+        global_variables.player_bank += global_variables.game_stake
+        global_variables.dealer_bank -= global_variables.game_stake
+    else:
+        global_variables.player_bank -= global_variables.game_stake
+        global_variables.dealer_bank += global_variables.game_stake
+
+def clean_up_values(is_clean_values:bool):
     """func resets player and dealer points for further game loops
 
     Args:
-        loose_win (bool): True: player wins, False: player looses
+        is_clean_values (bool): True: set, False: player looses
     """
-    global_variables.player_hand = []
-    global_variables.player_points = 0
-    global_variables.dealer_hand = []
-    global_variables.dealer_hand_visible = []
-    global_variables.dealer_points = 0
-    global_variables.dealer_points_visible = 0
     
-    if loose_win == True:
-        global_variables.player_bank += global_variables.pla
+    if is_clean_values == True:
+        global_variables.player_bank = 1000
+        global_variables.dealer_bank = 10000
+        
+        global_variables.game_stake = 0
+        global_variables.originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
+        # deck of cards -> shuffle
+        global_variables.shuffled_deck = random.sample(global_variables.originalDeck, len(global_variables.originalDeck))
+
+        global_variables.player_hand = []
+        global_variables.dealer_hand = []
+        global_variables.dealer_hand_visible = []
+
+        global_variables.player_points = 0
+        global_variables.dealer_points = 0
+        global_variables.dealer_points_visible = 0
+
+        global_variables.player_turn = 0
+        global_variables.dealer_turn = 0
+
+        global_variables.player_last_turn = True #True = hit False = stand
+        global_variables.dealer_last_turn = True #True = hit False = stand
+
+        global_variables.player_points_remaining = 21
+        global_variables.dealer_points_remaining = 21
+    else:
+        #global_variables.player_bank += global_variables.game_stake
+        #global_variables.dealer_bank -= global_variables.game_stake
+        
+        global_variables.game_stake = 0
+        global_variables.originalDeck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,'Jack','Jack','Jack','Jack','Queen','Queen','Queen','Queen','King','King','King','King','Ace','Ace','Ace','Ace',]
+        # deck of cards -> shuffle
+        global_variables.shuffled_deck = random.sample(global_variables.originalDeck, len(global_variables.originalDeck))
+
+        global_variables.player_hand = []
+        global_variables.dealer_hand = []
+        global_variables.dealer_hand_visible = []
+
+        global_variables.player_points = 0
+        global_variables.dealer_points = 0
+        global_variables.dealer_points_visible = 0
+
+        global_variables.player_turn = 0
+        global_variables.dealer_turn = 0
+
+        global_variables.player_last_turn = True #True = hit False = stand
+        global_variables.dealer_last_turn = True #True = hit False = stand
+
+        global_variables.player_points_remaining = 21
+        global_variables.dealer_points_remaining = 21
