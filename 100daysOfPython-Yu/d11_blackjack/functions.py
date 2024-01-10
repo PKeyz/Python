@@ -145,6 +145,7 @@ def remaining_points(player_points):
 def hit_or_stand():
     global_variables.player_turn = 1
     global_variables.dealer_turn = 0
+    #hit_or_stand_bool:bool
     
     while((global_variables.player_points < global_variables.point_limit) and (global_variables.dealer_points < global_variables.point_limit)):
         #if dealer stand and player stand - open all cards and count player with lowest difference to 21
@@ -165,6 +166,16 @@ def hit_or_stand():
         elif((global_variables.player_turn == 1) and (global_variables.dealer_turn == 0)):
             
             hit_or_stand_choice = input('"Hit" or "Stand"?\n')
+            # if((hit_or_stand_choice != "Hit") or (hit_or_stand_choice != "hit") or (hit_or_stand_choice != "Stand") or (hit_or_stand_choice != "stand")):
+            #     hit_or_stand_bool = False
+                
+            #     while (hit_or_stand_bool = False):
+            #         print('Please provide a valid input: "Hit"/"hit" or "Stand"/"stand" ')
+            #         hit_or_stand_choice = input('"Hit" or "Stand"?\n')
+            #         if(hit_or_stand_choice == "Hit" or hit_or_stand_choice == "hit" or hit_or_stand_choice == "Stand" or hit_or_stand_choice == "stand" ):
+            #             break
+            #         else:
+            #             continue
             
             if hit_or_stand_choice == 'Hit' or hit_or_stand_choice == 'hit' :
                 global_variables.player_last_turn = True
@@ -186,12 +197,15 @@ def hit_or_stand():
                 print('Dealers card value is under 17. Dealer "hits"')
                 global_variables.dealer_hand += deal_hand(global_variables.shuffled_deck,1)
                 global_variables.shuffled_deck = update_deck(global_variables.shuffled_deck,1)
+                global_variables.dealer_hand_visible = global_variables.dealer_hand[1:]
                 count_points(global_variables.dealer_hand,global_variables.dealer_points)
                 print(f'Dealers open cards are [{global_variables.dealer_hand_visible}] and he has {global_variables.dealer_points_visible} points')
         
                 global_variables.player_turn = 1
                 global_variables.dealer_turn = 0
                 
+                if(global_variables.dealer_points >= global_variables.point_limit):
+                    break
                 
             else:
                 print('Dealers card value over under 17. Dealer "stands"')

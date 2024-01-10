@@ -40,7 +40,8 @@ to keep hitting more cards if the sum of dealer’s cards is less than 17.
 As soon as the sum of dealer’s cards is either 17 or more, the dealer is obliged to stand.
 According to the final sum of the cards, the winner is decided.
 
-1. 
+1. fix game loop
+2. fix functions.cash_out() in blackjack.py. while loop 
 
 """
 
@@ -85,6 +86,7 @@ class BlackJack:
                 print(f'Dealers open card is {global_variables.dealer_hand_visible} and he has {global_variables.dealer_points_visible} points')
                 
                 while ((global_variables.player_points <= global_variables.player_bank) and (global_variables.dealer_points <= global_variables.point_limit)):
+                    global_variables.dealer_hand_visible = global_variables.dealer_hand[1:]
                     if((global_variables.player_points > global_variables.point_limit) or (global_variables.dealer_points == global_variables.point_limit)):
                         print(f'Bust! Dealer wins {global_variables.game_stake}$ and has a total of {global_variables.dealer_bank + global_variables.game_stake}$!')
                         print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
@@ -118,9 +120,8 @@ class BlackJack:
                             print('You exit the game.')
                             break
                     elif((global_variables.player_points == global_variables.point_limit) and (global_variables.dealer_points < global_variables.point_limit)):
-                        print('Win!')
+                        print(f'Win! Player wins {global_variables.game_stake}$ and has a total of {global_variables.player_bank + global_variables.game_stake}$!')
                         print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
-                        print(f'Bust! Player wins {global_variables.game_stake}$ and has a total of {global_variables.player_bank + global_variables.game_stake}$!')
                         functions.cash_out(True)
                         
                         run_choice = input('Do you want to play on, or stop the game? Press "Y" for Play or "N" for Stop\n')
