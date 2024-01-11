@@ -155,14 +155,18 @@ def hit_or_stand():
             if(global_variables.player_points_remaining < global_variables.dealer_points_remaining):
                 print('Win!')
                 print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+                clean_up_values(False)
                 
             elif(global_variables.player_points_remaining > global_variables.dealer_points_remaining):
                 print('Bust! Dealer wins!')
                 print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+                clean_up_values(False)
                 
             elif(global_variables.player_points_remaining == global_variables.dealer_points_remaining):
                 print('Push!')
                 print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
+                clean_up_values(False)
+                
         elif((global_variables.player_turn == 1) and (global_variables.dealer_turn == 0)):
             
             hit_or_stand_choice = input('"Hit" or "Stand"?\n')

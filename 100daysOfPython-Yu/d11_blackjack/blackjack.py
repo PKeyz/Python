@@ -91,6 +91,7 @@ class BlackJack:
                         print(f'Bust! Dealer wins {global_variables.game_stake}$ and has a total of {global_variables.dealer_bank + global_variables.game_stake}$!')
                         print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
                         functions.cash_out(False)
+                        functions.clean_up_values(False)
                         
                         run_choice = input('Do you want to play on, or stop the game? Press "Y" for Play or "N" for Stop\n')
                         if((run_choice == "y") or run_choice == "Y"):
@@ -123,6 +124,7 @@ class BlackJack:
                         print(f'Win! Player wins {global_variables.game_stake}$ and has a total of {global_variables.player_bank + global_variables.game_stake}$!')
                         print(f'Dealer\'s cards are {global_variables.dealer_hand} and dealer\'s points are {global_variables.dealer_points}')
                         functions.cash_out(True)
+                        functions.clean_up_values(False)
                         
                         run_choice = input('Do you want to play on, or stop the game? Press "Y" for Play or "N" for Stop\n')
                         if((run_choice == "y") or run_choice == "Y"):
