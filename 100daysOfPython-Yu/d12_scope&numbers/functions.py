@@ -1,6 +1,6 @@
 import constants
 
-def guess_loop(difficulty:str):
+def guess_loop(difficulty:str): 
     if difficulty == 'easy':
         attempts = 10
         while (attempts != 0):
