@@ -84,3 +84,4 @@ while is_playing:
         print(f"Your final score is: {counter}")
         #end game
         is_playing = False
+        
