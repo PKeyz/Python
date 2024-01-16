@@ -18,7 +18,9 @@ def turn_machine_off():
     turn_off = input("Would you like to turn down the coffe machine? Print 'yes' to turn down: ")
     if (turn_off == 'yes') or (turn_off == 'y'):
         is_turned_on = False
-        return is_turned_on
+    else:
+        is_turned_on = True
+    return is_turned_on
 
 
 # TODO: 3. Print report.
@@ -44,33 +46,32 @@ def print_report():
 def resources_sufficient(drink_choice: str):
     is_brewable = False
     if drink_choice == 'espresso':
-        if constants.water < constants.drink_dict[0].get('water'):
-            print('Sorry there is not enough water.')
-        elif constants.coffee < constants.drink_dict[0].get('coffee'):
-            print('Sorry there is not enough coffee.')
-        else:
-            is_brewable = True
-            return is_brewable
-    elif drink_choice == 'latte':
-        if constants.water < constants.drink_dict[1].get('water'):
-            print('Sorry there is not enough water.')
-        elif constants.coffee < constants.drink_dict[1].get('coffee'):
-            print('Sorry there is not enough coffee.')
-        elif constants.milk < constants.drink_dict[1].get('milk'):
-            print('Sorry there is not enough milk.')
-        else:
-            is_brewable = True
-            return is_brewable
+        drink_int: int = 0
+
+    if drink_choice == 'latte':
+        drink_int: int = 1
+
     elif drink_choice == 'cappuccino':
-        if constants.water < constants.drink_dict[2].get('water'):
-            print('Sorry there is not enough water.')
-        elif constants.coffee < constants.drink_dict[2].get('coffee'):
-            print('Sorry there is not enough coffee.')
-        elif constants.milk < constants.drink_dict[2].get('milk'):
-            print('Sorry there is not enough milk.')
-        else:
-            is_brewable = True
-            return is_brewable
+        drink_int: int = 2
+
+    if constants.water < constants.drink_dict[drink_int].get('water'):
+        print('Sorry there is not enough water.')
+        #refill()
+        is_brewable = False
+        return is_brewable
+    elif constants.coffee < constants.drink_dict[drink_int].get('coffee'):
+        print('Sorry there is not enough coffee.')
+        #refill()
+        is_brewable = False
+        return is_brewable
+    elif constants.milk < constants.drink_dict[drink_int].get('milk'):
+        print('Sorry there is not enough milk.')
+        #refill()
+        is_brewable = False
+        return is_brewable
+    else:
+        is_brewable = True
+        return is_brewable
 
 
 # TODO: 5. Process coins.
@@ -113,17 +114,16 @@ def count_money():
 
 def check_transaction_success(amount_total: int, drink_choice: str):
     is_transaction_successful = False
-    if (drink_choice == 'espresso') and (amount_total >= constants.drink_dict[0].get("price")):
-        constants.money += round(constants.drink_dict[0].get("price"),2)
-        print(f'Here is ${round(amount_total - constants.drink_dict[0].get("price"),2)} in change')
-        is_transaction_successful = True
-    elif (drink_choice == 'latte') and (amount_total >= constants.drink_dict[1].get("price")):
-        constants.money += round(constants.drink_dict[1].get("price"),2)
-        print(f'Here is ${round(amount_total - constants.drink_dict[1].get("price"),2)} in change')
-        is_transaction_successful = True
-    elif (drink_choice == 'cappuccino') and (amount_total >= constants.drink_dict[2].get("price")):
-        constants.money += round(constants.drink_dict[2].get("price"),2)
-        print(f'Here is ${round(amount_total - constants.drink_dict[2].get("price"),2)} in change')
+    if (drink_choice == 'espresso'):
+        drink_int = 0
+    elif (drink_choice == 'latte'):
+        drink_int = 1
+    elif (drink_choice == 'cappuccino'):
+        drink_int = 2
+
+    if amount_total >= constants.drink_dict[drink_int].get("price"):
+        constants.money += round(constants.drink_dict[drink_int].get("price"), 2)
+        print(f'Here is ${round(amount_total - constants.drink_dict[drink_int].get("price"), 2)} in change')
         is_transaction_successful = True
     else:
         print(f'Sorry that\'s not enough money. ${amount_total} refunded.')

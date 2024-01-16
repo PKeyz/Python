@@ -1,5 +1,5 @@
 # Water in ml
-water: int = 1500
+water: int = 500
 # Milk in ml
 milk: int = 1000
 # Coffee in g
