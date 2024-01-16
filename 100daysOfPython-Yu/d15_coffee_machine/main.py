@@ -1,4 +1,3 @@
-import constants
 import functions
 
 is_turned_on = True

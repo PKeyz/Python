@@ -1,11 +1,11 @@
 # Water in ml
-water: 1500
+water: int = 1500
 # Milk in ml
-milk: 1000
+milk: int = 1000
 # Coffee in g
-coffee: 1000
+coffee: int = 1000
 # Machine money total in $
-money: 20
+money: int = 20
 
 drink_dict = [
     {

@@ -51,7 +51,7 @@ def resources_sufficient(drink_choice: str):
             is_brewable = True
             return is_brewable
     elif drink_choice == 'latte':
-        if constants.water < constants.drink_dict[1].get("water"):
+        if constants.water < constants.drink_dict[1].get('water'):
             print('Sorry there is not enough water.')
         elif constants.coffee < constants.drink_dict[1].get('coffee'):
             print('Sorry there is not enough coffee.')
