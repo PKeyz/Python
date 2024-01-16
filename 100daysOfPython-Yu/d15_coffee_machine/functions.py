@@ -15,9 +15,10 @@ def prompt_user_drink():
 # a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off
 # the machine. Your code should end execution when this happens.
 def turn_machine_off():
-    turn_off = input("Would you like to turn down the coffe machine? Print 'yes' to turn down")
-    if turn_off == 'yes':
+    turn_off = input("Would you like to turn down the coffe machine? Print 'yes' to turn down: ")
+    if (turn_off == 'yes') or (turn_off == 'y'):
         is_turned_on = False
+        return is_turned_on
 
 
 # TODO: 3. Print report.
@@ -28,10 +29,10 @@ def turn_machine_off():
 # Coffee: 76g
 # Money: $2.5
 def print_report():
-    report_input = input('Would you like to see the machine report? Press "y" or "n".')
-    if report_input == 'report':
-        print(
-            f'Water: {constants.water}ml\nMilk: {constants.milk}ml\nCoffee: {constants.coffee}ml\n Money: ${constants.money}')
+    #report_input = input('Would you like to see the machine report? Press "y" or "n".')
+    #if report_input == 'y':
+    print(
+        f'>Water: {constants.water}ml\n>Milk: {constants.milk}ml\n>Coffee: {constants.coffee}ml\n>Money: ${constants.money}')
 
 
 # TODO: 4. Check resources sufficient?
@@ -85,14 +86,14 @@ def count_money():
     nickles = 0.05
     pennies = 0.01
 
-    amount_quarters = int(input('Insert the amount of quarters.'))
-    amount_dimes = int(input('Insert the amount of dimes.'))
-    amount_nickles = int(input('Insert the amount of nickels.'))
-    amount_pennies = int(input('Insert the amount of pennies.'))
+    amount_quarters = int(input('Insert the amount of quarters.: '))
+    amount_dimes = int(input('Insert the amount of dimes.: '))
+    amount_nickles = int(input('Insert the amount of nickels.: '))
+    amount_pennies = int(input('Insert the amount of pennies.: '))
 
-    amount_total = ((quarters * amount_quarters) + (dimes * amount_dimes) + (
-            nickles * amount_nickles) + pennies * amount_pennies)
-
+    amount_total = round((quarters * amount_quarters) + (dimes * amount_dimes) + (
+            nickles * amount_nickles) + (pennies * amount_pennies),2)
+    #print(amount_total)
     return amount_total
 
 
@@ -113,22 +114,20 @@ def count_money():
 def check_transaction_success(amount_total: int, drink_choice: str):
     is_transaction_successful = False
     if (drink_choice == 'espresso') and (amount_total >= constants.drink_dict[0].get("price")):
-        constants.money += constants.drink_dict[0].get("price")
-        print(f'Here is ${amount_total - constants.drink_dict[0].get("price")} in change')
+        constants.money += round(constants.drink_dict[0].get("price"),2)
+        print(f'Here is ${round(amount_total - constants.drink_dict[0].get("price"),2)} in change')
         is_transaction_successful = True
-        return is_transaction_successful
     elif (drink_choice == 'latte') and (amount_total >= constants.drink_dict[1].get("price")):
-        constants.money += constants.drink_dict[1].get("price")
-        print(f'Here is ${amount_total - constants.drink_dict[1].get("price")} in change')
+        constants.money += round(constants.drink_dict[1].get("price"),2)
+        print(f'Here is ${round(amount_total - constants.drink_dict[1].get("price"),2)} in change')
         is_transaction_successful = True
-        return is_transaction_successful
     elif (drink_choice == 'cappuccino') and (amount_total >= constants.drink_dict[2].get("price")):
-        constants.money += constants.drink_dict[2].get("price")
-        print(f'Here is ${amount_total - constants.drink_dict[2].get("price")} in change')
+        constants.money += round(constants.drink_dict[2].get("price"),2)
+        print(f'Here is ${round(amount_total - constants.drink_dict[2].get("price"),2)} in change')
         is_transaction_successful = True
-        return is_transaction_successful
     else:
         print(f'Sorry that\'s not enough money. ${amount_total} refunded.')
+    return is_transaction_successful
 
 
 # TODO: 7. Make Coffee.
@@ -152,29 +151,29 @@ def make_coffe(is_brewable: bool, is_transaction_successful: bool, drink_choice)
     if is_brewable and is_transaction_successful:
         print_report()
         if drink_choice == 'espresso':
-            constants.water - constants.drink_dict[0].get("water")
-            constants.coffee - constants.drink_dict[0].get("coffee")
-            constants.milk - constants.drink_dict[0].get("milk")
-            print('Making an Espresso, have a nice break!')
+            drink:str = 'an Espresso'
+            drink_int:int = 0
         elif drink_choice == 'latte':
-            constants.water - constants.drink_dict[1].get("water")
-            constants.coffee - constants.drink_dict[1].get("coffee")
-            constants.milk - constants.drink_dict[1].get("milk")
-            print('Making a Latte, have a nice break!')
+            drink = "a Latte"
+            drink_int = 1
         elif drink_choice == 'cappuccino':
-            constants.water - constants.drink_dict[2].get("water")
-            constants.coffee - constants.drink_dict[2].get("coffee")
-            constants.milk - constants.drink_dict[2].get("milk")
-            print('Making a Cappuccino, have a nice break!')
+            drink = 'a Cappuccino'
+            drink_int = 2
+        constants.water -= round(constants.drink_dict[drink_int].get("water"),2)
+        constants.coffee -= round(constants.drink_dict[drink_int].get("coffee"),2)
+        constants.milk -= round(constants.drink_dict[drink_int].get("milk"),2)
+        print(f'Making {drink}, have a nice break!')
         print_report()
 
 
 # TODO 8. Refill machine
 def refill():
-    resource_choice = input('What would you like to refill? Choose between: water/coffee/milk/money')
-    refill_amount = input('How much would you like to refill? Numbers in ml or $')
+    resource_choice = input('Would you like to refill anything? Choose between: Water/Coffee/Milk/Money or "n": ')
+    refill_amount = int(input('How much would you like to refill? Numbers in ml or $ (Else press: 0): '))
 
-    if resource_choice == 'water':
+    if resource_choice == 'n':
+        return
+    elif resource_choice == 'water':
         constants.water += refill_amount
     elif resource_choice == 'coffee':
         constants.coffee += refill_amount
@@ -182,3 +181,6 @@ def refill():
         constants.milk += refill_amount
     elif resource_choice == 'money':
         constants.money += refill_amount
+    else:
+        constants.water += 0
+    print_report()
