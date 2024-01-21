@@ -1,9 +1,12 @@
 import data
 import question_model
+import quiz_brain
 
 # new_question = question_model.Question()
 question_bank = []
 question_counter: int = 0
+
+quiz = quiz_brain.QuizBrain(question_bank)
 
 # TODO 1. with custom names -> generate custom Obj. QUESTION with different text/answer
 # TODO 2. append Obj. QUESTION to question_bank[]
@@ -25,4 +28,6 @@ def print_questions():
 
 generate_question_objects()
 
-print_questions()
+print(question_bank[1].text)
+
+quiz.next_question()
