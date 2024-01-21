@@ -13,8 +13,8 @@ quiz = quiz_brain.QuizBrain(question_bank)
 # TODO 2. append Obj. QUESTION to question_bank[]
 def generate_question_objects():
     for question_element in data.question_data:
-        question_text: str = question_element['text']
-        question_answer: bool = question_element['answer']
+        question_text: str = question_element['question']
+        question_answer: bool = question_element['correct_answer']
         question_object = question_model.Question(question_text, question_answer)
         question_bank.append(question_object)
 
