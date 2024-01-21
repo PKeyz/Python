@@ -8,6 +8,7 @@ question_counter: int = 0
 
 quiz = quiz_brain.QuizBrain(question_bank)
 
+
 # TODO 1. with custom names -> generate custom Obj. QUESTION with different text/answer
 # TODO 2. append Obj. QUESTION to question_bank[]
 def generate_question_objects():
@@ -17,7 +18,8 @@ def generate_question_objects():
         question_object = question_model.Question(question_text, question_answer)
         question_bank.append(question_object)
 
-#TODO 3. print questions and answers
+
+# TODO 3. print questions and answers
 def print_questions():
     counter = 0
     for question in question_bank:
@@ -28,6 +30,5 @@ def print_questions():
 
 generate_question_objects()
 
-print(question_bank[1].text)
-
-quiz.next_question()
+while quiz.still_has_questions():
+    quiz.next_question()

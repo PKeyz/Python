@@ -10,6 +10,12 @@ class QuizBrain:
         self.question_number: int = 0
         self.question_list: list = q_list
 
+    # TODO 8. create method still_has_questions()
+    # return bool depending on value of question_number
+    # use while loop to show next question until the end
+    def still_has_questions(self):
+        return len(self.question_list) > self.question_number
+
     # TODO 7. retrieve item at current question_number from question_list.
     # use input() to show the user the Question text and ask for user's answer.
     def next_question(self):
