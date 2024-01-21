@@ -1,7 +1,3 @@
-# TODO 3. with custom names -> generate custom Obj. QUESTION with different text/answer
-# TODO 4. append Obj. QUESTION to question_bank[]
-
-
 import data
 import question_model
 
@@ -9,20 +5,24 @@ import question_model
 question_bank = []
 question_counter: int = 0
 
-
-def generate_question_objects(text, answer):
-    global question_counter
-    for _ in data.question_data:
-        question_object = question_model.Question(text, answer)
+# TODO 1. with custom names -> generate custom Obj. QUESTION with different text/answer
+# TODO 2. append Obj. QUESTION to question_bank[]
+def generate_question_objects():
+    for question_element in data.question_data:
+        question_text: str = question_element['text']
+        question_answer: bool = question_element['answer']
+        question_object = question_model.Question(question_text, question_answer)
         question_bank.append(question_object)
-        question_counter += 1
 
-
-generate_question_objects(data.question_data[question_counter].get('text'),
-                          data.question_data[question_counter].get('answer'))
-
-for question in question_bank:
+#TODO 3. print questions and answers
+def print_questions():
     counter = 0
-    print(question_bank[counter].text)
-    print(question_bank[counter].answer)
-    counter += 1
+    for question in question_bank:
+        print(question_bank[counter].text)
+        print(question_bank[counter].answer)
+        counter += 1
+
+
+generate_question_objects()
+
+print_questions()
