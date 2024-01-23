@@ -5,6 +5,7 @@ phil_turtle = turtle.Turtle()
 phil_turtle.shape('classic')
 phil_turtle.color('red2')
 
+
 # # turtle square
 # for x in range(4):
 #     phil_turtle.forward(100)
@@ -86,16 +87,47 @@ phil_turtle.color('red2')
 #     phil_turtle.forward(15)
 
 
-direction = [0, 90, 180, 270]
-phil_turtle.speed(30)
-phil_turtle.pensize(3)
+# direction = [0, 90, 180, 270]
+# phil_turtle.speed(30)
+# phil_turtle.pensize(3)
+#
+# for _ in range(400):
+#     color = f'#{random.randrange(256 ** 3):06x}'
+#     phil_turtle.color(color)
+#
+#     phil_turtle.forward(15)
+#     phil_turtle.setheading(random.choice(direction))
+#
+#
+# def random_color():
+#     r = random.randint(0, 255)
+#     g = random.randint(0, 255)
+#     b = random.randint(0, 255)
+#
+#     random_color = (r, g, b)
+#     return random_color
 
-for _ in range(400):
-    color = f'#{random.randrange(256 ** 3):06x}'
-    phil_turtle.color(color)
 
-    phil_turtle.forward(15)
-    phil_turtle.setheading(random.choice(direction))
+# Make Spirograph: V.1
+# e.g from pos(0) create a circle with diameter of x
+# then move a little/ add a degree until 360
+# also in random color
+
+def draw_spirograph(size_of_gap: float):
+    phil_turtle.speed("fastest")
+    angle = 0
+
+    for _ in range(int(360 / size_of_gap)):
+        color = f'#{random.randrange(256 ** 3):06x}'
+        phil_turtle.color(color)
+
+        phil_turtle.circle(100)
+        phil_turtle.left(angle)
+        angle += size_of_gap
+
+
+draw_spirograph(10)
+
 # must be at the end of the code to visualize, else returns empty screen
 screen = turtle.Screen()
 screen.exitonclick()
