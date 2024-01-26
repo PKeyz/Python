@@ -44,9 +44,6 @@ turtles_lst.append(black_turtle)
 
 
 user_popup = screen.textinput('TurtleRace', 'Who will win the race? Enter a colour:')
-print(user_popup)
-# two simultaneous turtles 'win' race?
-# you loose! red turtle wins - with choice = red
 
 is_game_over = False
 
@@ -61,7 +58,5 @@ while not is_game_over:
                 print(f'You Loose. The {winner_turtle} turtle is the winner!')
             is_game_over = True
             break
-
-
 
 screen.exitonclick()
