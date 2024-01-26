@@ -9,8 +9,17 @@ screen.setup(width=500, height=450)
 turtles_lst = []
 
 start = -250
-end_state = 220
+end_state = 230
 max_step = 30
+
+# short version for creating multiple objects from Udemy:
+# colors = ['red','blue',....,]
+# y_positions = [-70, -30, 10, 50, ...]
+#
+# for turtle_index in range(0, 6):
+#     tim = turtle.Turtle(shape='turtle')
+#     tim.penup()
+#     tim.goto(x=start, y= y_positions[turtle_index])
 
 blue_turtle = turtle.Turtle('turtle', 0, True)
 blue_turtle.color('blue')
