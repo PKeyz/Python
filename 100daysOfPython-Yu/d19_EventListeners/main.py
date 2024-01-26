@@ -1,38 +1,67 @@
 import turtle
+import random
 
-phil_turtle = turtle.Turtle()
-# keep last to visualize the actions propertly
+# keep last to visualize the actions properly
 screen = turtle.Screen()
+screen.setup(width=500, height=450)
+
+# turtle_names = ['blue_turtle', 'green_turtle', 'yellow_turtle', 'red_turtle', 'black_turtle']
+turtles_lst = []
+
+start = -230
+end_state = 220
+max_step = 30
+
+blue_turtle = turtle.Turtle('turtle', 0, True)
+blue_turtle.color('blue')
+blue_turtle.penup()
+blue_turtle.setpos(start, 110)
+turtles_lst.append(blue_turtle)
+
+green_turtle = turtle.Turtle('turtle', 0, True)
+green_turtle.color('green')
+green_turtle.penup()
+green_turtle.setpos(start, 70)
+turtles_lst.append(green_turtle)
+
+yellow_turtle = turtle.Turtle('turtle', 0, True)
+yellow_turtle.color('yellow')
+yellow_turtle.penup()
+yellow_turtle.setpos(start, 30)
+turtles_lst.append(yellow_turtle)
+
+red_turtle = turtle.Turtle('turtle', 0, True)
+red_turtle.color('red')
+red_turtle.penup()
+red_turtle.setpos(start, -10)
+turtles_lst.append(red_turtle)
+
+black_turtle = turtle.Turtle('turtle', 0, True)
+black_turtle.color('black')
+black_turtle.penup()
+black_turtle.setpos(start, -50)
+turtles_lst.append(black_turtle)
 
 
-def move_forward():
-    phil_turtle.speed(5)
-    phil_turtle.forward(10)
+user_popup = screen.textinput('TurtleRace', 'Who will win the race? Enter a colour:')
+print(user_popup)
+# two simultaneous turtles 'win' race?
+# you loose! red turtle wins - with choice = red
 
-def move_backwards():
-    phil_turtle.speed(5)
-    phil_turtle.backward(10)
+is_game_over = False
 
-def move_left():
-    newheading = phil_turtle.heading() + 10
-    phil_turtle.setheading(newheading)
+while not is_game_over:
+    for turtle in turtles_lst:
+        turtle.forward(random.randint(0, max_step))
+        if turtle.xcor() >= end_state:
+            winner_turtle = turtle.color()[0]
+            if winner_turtle == user_popup:
+                print(f'You Win. The {winner_turtle} turtle is the winner!')
+            elif winner_turtle != user_popup:
+                print(f'You Loose. The {winner_turtle} turtle is the winner!')
+            is_game_over = True
+            break
 
-def move_right():
-    newheading = phil_turtle.heading() - 10
-    phil_turtle.setheading(newheading)
 
-def clear_screen():
-    turtle.resetscreen()
-
-screen.listen()
-screen.onkeypress(move_forward, 'w')
-screen.onkeypress(move_backwards, "s")
-screen.onkeypress(move_left, "a")
-screen.onkeypress(move_right, "d")
-screen.onkeypress(clear_screen, "c")
 
 screen.exitonclick()
-
-
-# WASD buttons for movement in according directions -> drawing lines in this direction while holding key pressed
-#     clear screen via "C" button

@@ -39,12 +39,12 @@ for i in range(10):
         phil_turtle.color(rgb_color)
 
         phil_turtle.dot(20,rgb_color)
-        # phil_turtle.begin_fill()
-        # phil_turtle.circle(10)
-        # phil_turtle.end_fill()
-        #phil_turtle.penup()
+        # blue_turtle.begin_fill()
+        # blue_turtle.circle(10)
+        # blue_turtle.end_fill()
+        #blue_turtle.penup()
         phil_turtle.forward(50)
-        #phil_turtle.pendown()
+        #blue_turtle.pendown()
     y += 50
 
 
