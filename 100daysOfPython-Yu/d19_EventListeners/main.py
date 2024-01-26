@@ -8,7 +8,7 @@ screen.setup(width=500, height=450)
 # turtle_names = ['blue_turtle', 'green_turtle', 'yellow_turtle', 'red_turtle', 'black_turtle']
 turtles_lst = []
 
-start = -230
+start = -250
 end_state = 220
 max_step = 30
 
