@@ -35,8 +35,11 @@ def define_rand_coordinate():
     """
     defines a random position on the 600*600 screen
     """
-    coordinate = (random.randint(-300, 300), random.randint(-300, 300))
+    x = random.randint(-300, 300)
+    y = random.randint(-300, 300)
+    coordinate = (x, y)
     return coordinate
+
 
 # def new_food_pos():
 #     new_position = ()

@@ -1,7 +1,7 @@
 import turtle
-import functions
+import functions as f
 
-#TODO 0. init snake game
+# TODO 0. init snake game
 
 screen = turtle.Screen()
 screen.setup(width=600, height=600)
@@ -10,45 +10,23 @@ screen.title('My Snake Game')
 
 snake_lst = []
 
-# snake_lst.append(functions.create_one_snake(0, 0, 'red'))
-# snake_lst.append(functions.create_one_snake(-20, 0, 'red'))
-# snake_lst.append(functions.create_one_snake(-40, 0, 'red'))
+# initial snake at game start
 starting_positions = [(0, 0), (-20, 0), (-40, 0)]
 
-#food example
-functions.create_one_snake(0, 70, 'blue')
+# food example
+#f.create_one_snake(0, 70, 'blue')
 
 i = 0
 j = 1
 for x in range(3):
-    snake = functions.create_one_snake(starting_positions[x][i], starting_positions[x][j], 'red')
+    snake = f.create_one_snake(starting_positions[x][i], starting_positions[x][j], 'red')
     snake_lst.append(snake)
 
-print(snake_lst)
 is_running = True
 while is_running:
+    snake = f.create_food(f.define_rand_coordinate())
+
     for snake in snake_lst:
-        snake.forward(100)
-    is_running = False
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        snake.forward(5)
 
 screen.exitonclick()
-
