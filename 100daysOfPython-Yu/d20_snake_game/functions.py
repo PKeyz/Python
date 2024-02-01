@@ -10,9 +10,9 @@ def create_one_snake(x: int, y: int, color: str):
     snake = turtle.Turtle('square')
     snake.color('black')
     snake.penup()
-    #snake.shapesize(0.5, 0.5)
     snake.setposition(x, y)
     snake.color(color)
+    return snake
 
 
 # TODO 2. move the snake
