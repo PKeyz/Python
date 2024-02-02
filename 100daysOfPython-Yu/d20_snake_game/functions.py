@@ -47,6 +47,7 @@ def create_food():
     y = new_food_pos[1]
     create_one_snake(x, y, 'blue')
 
+
 # def new_food_pos():
 #     new_position = ()
 #     is_used = True
@@ -58,3 +59,11 @@ def create_food():
 #             return new_position
 #         else:
 #             continue
+
+
+def left():
+    turtle.left(90)
+
+
+def right():
+    turtle.right(90)
