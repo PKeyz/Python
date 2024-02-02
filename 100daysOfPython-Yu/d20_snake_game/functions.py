@@ -37,9 +37,15 @@ def define_rand_coordinate():
     """
     x = random.randint(-300, 300)
     y = random.randint(-300, 300)
-    coordinate = (x, y)
+    coordinate = [x, y]
     return coordinate
 
+
+def create_food():
+    new_food_pos = define_rand_coordinate()
+    x = new_food_pos[0]
+    y = new_food_pos[1]
+    create_one_snake(x, y, 'blue')
 
 # def new_food_pos():
 #     new_position = ()
@@ -52,8 +58,3 @@ def define_rand_coordinate():
 #             return new_position
 #         else:
 #             continue
-
-def create_food(new_food_pos):
-    x = new_food_pos()[0]
-    y = new_food_pos()[1]
-    create_one_snake(x, y, 'blue')

@@ -2,7 +2,11 @@
     can't get 'food' to show up, when using function create_food - need to fix,
     because this will need to run in a loop and constantly recreate it.
 
-    Until then I could also add the basic movement functionality
+    Until then, I could also add the basic movement functionality
     and then end the game when the snake hits the walls
 
     After that the food and growing of the snake needs to be introduced
+
+    -------------------
+
+    changed create_food to finally create food blocks
