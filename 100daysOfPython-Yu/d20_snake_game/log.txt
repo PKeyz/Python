@@ -1,4 +1,4 @@
-02.01.24:
+02.02.24:
     can't get 'food' to show up, when using function create_food - need to fix,
     because this will need to run in a loop and constantly recreate it.
 
@@ -10,3 +10,8 @@
     -------------------
 
     changed create_food to finally create food blocks
+
+    -------------------
+29.02.24:
+
+

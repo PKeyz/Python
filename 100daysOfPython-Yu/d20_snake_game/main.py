@@ -1,26 +1,32 @@
 import turtle
 import time
 import functions as f
+import snake as sn
+import food as fo
 
 # TODO 0. init snake game
 
+GAME_WIDTH = 600
+GAME_HEIGHT = 600
+SCREEN_BG_COLOR = 'black'
+SCREEN_TITLE = 'My Snake Game'
+
 screen = turtle.Screen()
-screen.setup(width=600, height=600)
-screen.bgcolor('black')
-screen.title('My Snake Game')
+screen.setup(width=GAME_WIDTH, height=GAME_HEIGHT)
+screen.bgcolor(SCREEN_BG_COLOR)
+screen.title(SCREEN_TITLE)
 
 snake_lst = []
 
 # initial snake at game start
 starting_positions = [(0, 0), (-20, 0), (-40, 0)]
 
-# food example
-# f.create_one_snake(0, 70, 'blue')
+SHAPE = 'square'
 
 i = 0
 j = 1
 for x in range(3):
-    snake = f.create_one_snake(starting_positions[x][i], starting_positions[x][j], 'red')
+    snake = (sn.create_one_snake(starting_positions[x][i], starting_positions[x][j]))
     snake_lst.append(snake)
 
 is_running = True
@@ -29,26 +35,33 @@ while is_running:
     time.sleep(.5)
 
     for snake in snake_lst:
+        old_x: int
+        old_y: int
+
         turtle.listen()
 
-        snake_index = snake_lst.index(snake)
-        old_position = snake.pos()
-
-        turtle.onkey(f.left, "a")
-        turtle.onkey(f.right, "d")
-
+        turtle.onkey(sn.Snake.move_left, 'Left')
+        turtle.onkey(sn.Snake.move_right, 'Right')
+        turtle.onkey(sn.Snake.move_up, 'Up')
+        turtle.onkey(sn.Snake.move_down, 'Down')
 
         snake.forward(20)
 
-        new_position = snake.pos()
-        starting_positions[snake_index] = new_position
-        #print(starting_positions)
+        if snake_lst[0]:
+            turtle.listen()
 
-    if snake.pos()[0] > 300 or snake.pos()[1] > 300:
-        print('Game Over')
-        is_running = False
-    elif snake.pos() in starting_positions:
-        print('Game Over')
-        is_running = False
+            snake.onkey(sn.Snake.move_up(), 'Up')
+            old_x = snake.xcor()
+            old_y = snake.ycor()
+
+        elif not snake_lst[0]:
+            current_x = snake.xcor()
+            current_y = snake.ycor()
+
+            snake.setposition(old_x, old_y)
+
+            old_x = current_x
+            old_y = current_y
+
 turtle.mainloop()
 screen.exitonclick()
