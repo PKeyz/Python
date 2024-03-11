@@ -1,61 +1,28 @@
-import turtle
+from turtle import Turtle
+
+STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
+MOVE_DISTANCE = 20
 
 
 class Snake:
-    snake_shape: str
-    snake_color: str
-    xcord: int
-    ycord: int
-    snake_lst: []
-    starting_positions: []
-
     def __init__(self):
-        snake = turtle.Turtle(self.snake_shape)
-        snake_shape: str = 'square'
-        snake_color: str = 'white'
-        starting_positions = [(0, 0), (-20, 0), (-40, 0)]
-        snake_lst = []
+        self.segments = []
+        self.create_snake()
 
-        i = 0
-        j = 1
-        for x in range(3):
-            snake = turtle.Turtle(snake_shape)
-            snake.color('black')
-            snake.penup()
-            snake.setposition(starting_positions[x][i], starting_positions[x][j])
-            snake.color(snake_color)
-            snake_lst.append(snake)
+    def create_snake(self):
+        for position in STARTING_POSITIONS:
+            new_segment = Turtle('square')
+            new_segment.color('green')
+            new_segment.penup()
+            new_segment.goto(position)
+            self.segments.append(new_segment)
 
     def move(self):
-        distance = 20
-        self.snake_lst: []
-        self.starting_positions: []
+        for seg_num in range(len(self.segments) - 1, 0, -1):
+            new_x = self.segments[seg_num - 1].xcor()
+            new_y = self.segments[seg_num - 1].ycor()
+            self.segments[seg_num].goto(new_x, new_y)
 
-        is_running = True
-        while is_running:
-            # screen.update()
-            # time.sleep(.5)
+        self.segments[0].forward(MOVE_DISTANCE)
 
-            for snake in self.snake_lst:
-                snake_index = self.snake_lst.index(snake)
-                old_position = snake.pos()
 
-                snake.forward(20)
-
-                new_position = snake.pos()
-                self.starting_positions[snake_index] = new_position
-
-    # def
-    #     for snake in snake_lst:
-    #         turtle.listen()
-    #
-    #         snake_index = snake_lst.index(snake)
-    #         old_position = snake.pos()
-    #
-    #         turtle.onkey(f.left, "a")
-    #         turtle.onkey(f.right, "d")
-    #
-    #         snake.forward(20)
-    #
-    #         new_position = snake.pos()
-    #         starting_positions[snake_index] = new_position
