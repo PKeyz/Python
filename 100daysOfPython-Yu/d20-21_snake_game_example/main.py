@@ -37,17 +37,6 @@ while is_game_on:
     if snake.head.xcor() > 300 or snake.head.xcor() < -300 or snake.head.ycor() > 300 or snake.head.ycor() < -300:
         scoreboard.print_game_over()
         is_game_on = False
-    """
-    # Detect collision with tail
-    for segment in snake.segments:
-        if segment == snake.head:
-            pass
-        elif snake.head.distance(segment) < 10:
-            scoreboard.print_game_over()
-            is_game_on = False
-    # if head collides with any segment in tail :
-    # trigger scoreboard.game_over
-    """
 
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
