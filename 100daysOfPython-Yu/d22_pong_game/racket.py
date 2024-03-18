@@ -1,7 +1,7 @@
 import turtle
 
-STARTING_POSITION_1 = (-375, 0)
-STARTING_POSITION_2 = (370, 0)
+STARTING_POSITION_1 = (-350, 0)
+STARTING_POSITION_2 = (350, 0)
 SPEED = 0
 HEADING_UP = 90
 HEADING_DOWN = 270
@@ -27,9 +27,9 @@ class Racket(turtle.Turtle):
             self.goto(STARTING_POSITION_2)
 
     def move_up(self):
-        self.setheading(HEADING_UP)
-        self.forward(30)
+        new_y = self.ycor() + 20
+        self.goto(self.xcor(), new_y)
 
     def move_down(self):
-        self.setheading(HEADING_DOWN)
-        self.forward(30)
+        new_y = self.ycor() - 20
+        self.goto(self.xcor(), new_y)
