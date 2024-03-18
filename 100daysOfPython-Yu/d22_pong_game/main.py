@@ -2,9 +2,10 @@ import time
 from turtle import Turtle, Screen
 import racket
 import scoreboard
+import ball
 
 screen = Screen()
-screen.setup(width=1200, height=800)
+screen.setup(width=800, height=600)
 screen.bgcolor('black')
 screen.title("My Pong Game")
 screen.tracer(0)
@@ -13,6 +14,8 @@ screen.tracer(0)
 scoreboard = scoreboard.Scoreboard()
 racket_1 = racket.Racket('left')
 racket_2 = racket.Racket('right')
+ball = ball.Ball()
+
 
 screen.listen()
 # screen.onkey(fun, "key")
@@ -27,6 +30,7 @@ while is_game_on:
     time.sleep(0.1)
     # scoreboard.dashed_line()
     # scoreboard.display()
+    ball.ball_move()
 
     pass
 

@@ -17,7 +17,7 @@ class Scoreboard(turtle.Turtle):
         self.hideturtle()
         self.penup()
         self.color('white')
-        self.goto(0, 400)
+        self.goto(0, 300)
 
     def dashed_line(self):
         self.setheading(270)
