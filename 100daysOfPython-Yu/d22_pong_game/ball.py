@@ -69,4 +69,3 @@ class Ball(turtle.Turtle):
         new_y = self.ycor() + self.y_move
         self.goto(new_x, new_y)
 
-    # elif (x - 10) == LEFT_EDGE or (x + 10) == RIGHT_EDGE:
