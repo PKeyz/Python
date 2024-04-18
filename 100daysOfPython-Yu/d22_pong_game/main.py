@@ -4,6 +4,9 @@ import racket
 import scoreboard
 import ball
 
+y = range(-300, 300)
+x = range(-400, 400)
+
 screen = Screen()
 screen.setup(width=800, height=600)
 screen.bgcolor('black')
@@ -33,10 +36,20 @@ while is_game_on:
     # scoreboard.dashed_line()
     # scoreboard.display()
     ball.ball_move()
+    ball.check_bounce()
 
-    if ball.distance(racket_l.pos())< 20 or ball.distance(racket_r.pos())< 20:
-        ball.bounce()
-
+    # if ball.distance(racket_l) < 10 or ball.distance(racket_r) < 10:
+    #     ball.bounce()
+    # elif ball.distance(-400, (-300 < y < 300)) < 10 or ball.distance(400, (-300 < y < 300)):
+    #     pass
+    #     #ball.bounce()
+    #     #score += 1
+    #     #replay
+    # elif ball.distance((-400 < x < 400), -300) < 10 or ball.distance((-400 < x < 400), 300):
+    #     pass
+    #     #ball.bounce()
+    #     # score += 1
+    #     # replay
 
 
 
