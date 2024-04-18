@@ -2,7 +2,7 @@ import turtle
 
 STARTING_POSITION_1 = (-350, 0)
 STARTING_POSITION_2 = (350, 0)
-SPEED = 0
+SPEED = "fastest"
 HEADING_UP = 90
 HEADING_DOWN = 270
 
@@ -15,7 +15,7 @@ class Racket(turtle.Turtle):
     def __init__(self, position):
         super().__init__()
         self.shape('square')
-        self.shapesize(1, 4)
+        self.shapesize(1, 5)
         self.penup()
         self.color('white')
         self.speed(SPEED)

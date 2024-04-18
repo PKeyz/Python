@@ -12,17 +12,19 @@ screen.tracer(0)
 
 # create classes here
 scoreboard = scoreboard.Scoreboard()
-racket_1 = racket.Racket('left')
-racket_2 = racket.Racket('right')
+racket_l = racket.Racket('left')
+racket_r = racket.Racket('right')
 ball = ball.Ball()
 
 
 screen.listen()
 # screen.onkey(fun, "key")
-screen.onkeypress(racket_1.move_up, "w")
-screen.onkeypress(racket_1.move_down, "s")
-screen.onkeypress(racket_2.move_up, "Up")
-screen.onkeypress(racket_2.move_down, "Down")
+screen.onkeypress(racket_l.move_up, "w")
+screen.onkeypress(racket_l.move_down, "s")
+screen.onkeypress(racket_r.move_up, "Up")
+screen.onkeypress(racket_r.move_down, "Down")
+
+ball.random_direction()
 
 is_game_on = True
 while is_game_on:
@@ -32,6 +34,14 @@ while is_game_on:
     # scoreboard.display()
     ball.ball_move()
 
-    pass
+    if ball.distance(racket_l.pos())< 20 or ball.distance(racket_r.pos())< 20:
+        ball.bounce()
+
+
+
+
+
+
+
 
 screen.exitonclick()

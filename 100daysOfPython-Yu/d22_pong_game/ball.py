@@ -1,48 +1,55 @@
 import turtle
 import random
+import math
 
+# Define constants
+TOP_EDGE = 280
+BOTTOM_EDGE = -280
 
 STARTING_POSITION_1 = (0, 300)
 STARTING_POSITION_2 = (0, -300)
-SPEED = "fastest"
+SPEED = "slowest"
 HEADING_UP = 90
 HEADING_DOWN = 270
 HEADING_LEFT = 180
 HEADING_RIGHT = 0
 
+TOP_EDGE_ANGLE = 0
+BOTTOM_EDGE_ANGLE = 180
+LEFT_EDGE_ANGLE = 90
+RIGHT_EDGE_ANGLE = -90
+
 
 class Ball(turtle.Turtle):
     def __init__(self):
         super().__init__()
-        self.shape('square')
-        self.shapesize(0.7)
+        self.shape('circle')
+        self.shapesize(1)
         self.penup()
         self.color('white')
         self.speed(SPEED)
-        self.random_start_direction()
+        self.goto(0, 0)
+        self.random_direction()
+        # self.x_move = 10
+        # self.y_move = 10
+        # self.forward(10)
 
-    def random_start_direction(self):
+    def random_direction(self):
         """
         return a random vector to start the pong game with
         """
-        y = random.randint(0, 1)
-        if y == 0:
-            self.goto(STARTING_POSITION_1)
-            self.setheading(HEADING_DOWN)
-        else:
-            self.goto(STARTING_POSITION_2)
-            self.setheading(HEADING_UP)
+        self.setheading(random.randint(0, 359))
 
-        direction = random.randint(1, 179)
-        if direction <= 90:
-            self.left(direction)
-        elif direction > 90:
-            self.right(direction - 90)
+    def check_bounce(self):
+        y = self.ycor()
+        if y >= TOP_EDGE or y <= BOTTOM_EDGE:
+            self.bounce()
+
+    def bounce(self):
+        self.y_move *= -1
 
     def ball_move(self):
         """
         define continuous ball movement
         """
-        self.forward(40)
-
-
+        self.forward(10)
