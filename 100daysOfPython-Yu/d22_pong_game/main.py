@@ -19,7 +19,6 @@ racket_l = racket.Racket('left')
 racket_r = racket.Racket('right')
 ball = ball.Ball()
 
-
 screen.listen()
 # screen.onkey(fun, "key")
 screen.onkeypress(racket_l.move_up, "w")
@@ -38,23 +37,11 @@ while is_game_on:
     ball.ball_move()
     ball.check_bounce()
 
-    # if ball.distance(racket_l) < 10 or ball.distance(racket_r) < 10:
-    #     ball.bounce()
-    # elif ball.distance(-400, (-300 < y < 300)) < 10 or ball.distance(400, (-300 < y < 300)):
-    #     pass
-    #     #ball.bounce()
-    #     #score += 1
-    #     #replay
-    # elif ball.distance((-400 < x < 400), -300) < 10 or ball.distance((-400 < x < 400), 300):
-    #     pass
-    #     #ball.bounce()
-    #     # score += 1
-    #     # replay
-
-
-
-
-
+    #Detect collision with paddle
+    if ball.distance(racket_l) < 50 and ball.xcor() < -330:
+        ball.bounce_paddle()
+    elif ball.distance(racket_r) < 50 and ball.xcor() > 330:
+        ball.bounce_paddle()
 
 
 screen.exitonclick()
