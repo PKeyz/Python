@@ -18,3 +18,6 @@ class Player(turtle.Turtle):
         self.setheading(90)
         self.score = 0
 
+    def move_up(self):
+        old_y = self.ycor()
+        self.goto(0, old_y + MOVE_DISTANCE)
