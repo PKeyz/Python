@@ -38,24 +38,24 @@ class Ball(turtle.Turtle):
         """
         return a random vector to start the pong game with
         """
-        self.setheading(random.randint(0, 359))
+        self.setheading(random.randint((-180), 180))
 
     def check_bounce(self):
         """
-        make ball bounce from top or bottom
+        make ball bounce_y from top or bottom
         """
         y = self.ycor()
         x = self.xcor()
         if y >= TOP_EDGE or y <= BOTTOM_EDGE:
-            self.bounce()
+            self.bounce_y()
 
-    def bounce(self):
+    def bounce_y(self):
         """
         change ball direction
         """
         self.y_move *= -1
 
-    def bounce_paddle(self):
+    def bounce_x(self):
         """
         change ball direction after paddle
         """
@@ -68,4 +68,8 @@ class Ball(turtle.Turtle):
         new_x = self.xcor() + self.x_move
         new_y = self.ycor() + self.y_move
         self.goto(new_x, new_y)
+
+    def reset_position(self):
+        self.goto(0, 0)
+        self.bounce_x()
 

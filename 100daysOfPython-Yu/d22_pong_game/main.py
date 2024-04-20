@@ -43,18 +43,16 @@ while is_game_on:
 
     #Detect collision with paddle
     if (ball.distance(racket_l) < 50 and ball.xcor() < -320) or (ball.distance(racket_r) < 50 and ball.xcor() > 320):
-        ball.bounce_paddle()
+        ball.bounce_x()
 
     if ball.xcor() <= -400:
         scoreboard.increase_score('right')
         racket_r.racket_increase_score()
-        ball.goto(0, 0)
-        #ball.random_direction()
+        ball.reset_position()
     elif ball.xcor() >= 400:
         scoreboard.increase_score('left')
         racket_l.racket_increase_score()
-        ball.goto(0, 0)
-        #ball.random_direction()
+        ball.reset_position()
 
     if racket_l.score == 10 or racket_r.score == 10:
         scoreboard.print_game_over()
