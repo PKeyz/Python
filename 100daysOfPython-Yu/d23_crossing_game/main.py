@@ -16,12 +16,14 @@ screen.onkeypress(player.move_up, "w")
 screen.onkeypress(player.move_up, "W")
 screen.onkeypress(player.move_up, "Up")
 
-car = car_manager.CarManager()
 #game
 game_is_on = True
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+
+    #creates cars continously, need to adjust to create multiple cars but slower and more randomized
+    car = car_manager.CarManager()
 
 
 screen.exitonclick()
