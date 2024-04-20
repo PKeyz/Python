@@ -55,4 +55,5 @@ class Scoreboard(turtle.Turtle):
         prints game over
         """
         self.goto(0, 0)
-        self.write("GAME OVER", MOVEMENT, ALIGNMENT, FONT)
+        self.write(f"GAME OVER", MOVEMENT, ALIGNMENT, FONT)
+        self.write(f"{self.score_1} : {self.score_2}", MOVEMENT, ALIGNMENT, FONT)

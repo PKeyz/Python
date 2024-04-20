@@ -1,5 +1,5 @@
 import time
-from turtle import Turtle, Screen
+from turtle import Screen
 import racket
 import scoreboard
 import ball
@@ -31,35 +31,35 @@ screen.onkeypress(racket_l.move_down, "S")
 screen.onkeypress(racket_r.move_up, "Up")
 screen.onkeypress(racket_r.move_down, "Down")
 
-
-
 is_game_on = True
 while is_game_on:
     screen.update()
     time.sleep(0.1)
     scoreboard_dashed.dashed_line()
-    #scoreboard.display()
 
-    while racket_l.score < 10 or racket_r.score < 10:
-        ball.random_direction()
-        ball.ball_move()
-        ball.check_bounce()
+    ball.random_direction()
+    ball.ball_move()
+    ball.check_bounce()
 
-        #Detect collision with paddle
-        if (ball.distance(racket_l) < 50 and ball.xcor() < -320) or (ball.distance(racket_r) < 50 and ball.xcor() > 320):
-            ball.bounce_paddle()
+    #Detect collision with paddle
+    if (ball.distance(racket_l) < 50 and ball.xcor() < -320) or (ball.distance(racket_r) < 50 and ball.xcor() > 320):
+        ball.bounce_paddle()
 
-        if ball.xcor() <= -400:
-            scoreboard.increase_score('right')
-            continue
-        elif ball.xcor() >= 400:
-            scoreboard.increase_score('left')
-            continue
+    if ball.xcor() <= -400:
+        scoreboard.increase_score('right')
+        racket_r.racket_increase_score()
+        ball.goto(0, 0)
+        #ball.random_direction()
+    elif ball.xcor() >= 400:
+        scoreboard.increase_score('left')
+        racket_l.racket_increase_score()
+        ball.goto(0, 0)
+        #ball.random_direction()
 
-        scoreboard.display()
+    if racket_l.score == 10 or racket_r.score == 10:
+        scoreboard.print_game_over()
+        is_game_on = False
 
-    scoreboard.print_game_over()
-    is_game_on = False
-
+    scoreboard.display()
 
 screen.exitonclick()
