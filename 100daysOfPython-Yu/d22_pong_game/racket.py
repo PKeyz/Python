@@ -20,6 +20,7 @@ class Racket(turtle.Turtle):
         self.color('white')
         self.speed(SPEED)
         self.setheading(HEADING_UP)
+        self.score = 0
 
         if position == 'left':
             self.goto(STARTING_POSITION_1)
@@ -33,3 +34,6 @@ class Racket(turtle.Turtle):
     def move_down(self):
         new_y = self.ycor() - 20
         self.goto(self.xcor(), new_y)
+
+    def racket_increase_score(self):
+        self.score += 1
