@@ -56,4 +56,3 @@ class Scoreboard(turtle.Turtle):
         """
         self.goto(0, 0)
         self.write(f"GAME OVER", MOVEMENT, ALIGNMENT, FONT)
-        self.write(f"{self.score_1} : {self.score_2}", MOVEMENT, ALIGNMENT, FONT)

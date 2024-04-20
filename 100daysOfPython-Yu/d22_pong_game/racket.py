@@ -28,11 +28,11 @@ class Racket(turtle.Turtle):
             self.goto(STARTING_POSITION_2)
 
     def move_up(self):
-        new_y = self.ycor() + 20
+        new_y = self.ycor() + 30
         self.goto(self.xcor(), new_y)
 
     def move_down(self):
-        new_y = self.ycor() - 20
+        new_y = self.ycor() - 30
         self.goto(self.xcor(), new_y)
 
     def racket_increase_score(self):
