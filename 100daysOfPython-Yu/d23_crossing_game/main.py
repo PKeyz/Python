@@ -24,6 +24,7 @@ while game_is_on:
 
     #creates cars continously, need to adjust to create multiple cars but slower and more randomized
     car = car_manager.CarManager()
+    player.reset_pos()
 
 
 screen.exitonclick()
