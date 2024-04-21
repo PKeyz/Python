@@ -10,6 +10,8 @@ screen.bgcolor('black')
 screen.tracer(0)
 player = player.Player()
 
+car = car_manager.CarManager()
+
 screen.listen()
 #player control buttons
 screen.onkeypress(player.move_up, "w")
@@ -22,9 +24,11 @@ while game_is_on:
     time.sleep(0.1)
     screen.update()
 
-    #creates cars continously, need to adjust to create multiple cars but slower and more randomized
-    car = car_manager.CarManager()
     player.reset_pos()
+
+    #creates cars continously, need to adjust to create multiple cars but slower and more randomized
+
+    car.move_left()
 
 
 screen.exitonclick()
