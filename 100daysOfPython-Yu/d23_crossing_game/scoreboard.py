@@ -16,12 +16,12 @@ class Scoreboard(turtle.Turtle):
 
     def display(self):
         self.clear()
-        self.write(f"Score: {self.score}", MOVEMENT, ALIGNMENT, FONT)
+        self.write(f"Level: {self.score}", MOVEMENT, ALIGNMENT, FONT)
 
     def game_over(self):
         self.clear()
         self.goto(0, 0)
-        self.write(f"GAME OVER\nScore: {self.score}", MOVEMENT, ALIGNMENT, FONT)
+        self.write(f"GAME OVER\nLevel: {self.score}", MOVEMENT, ALIGNMENT, FONT)
 
     def increment_score(self):
         self.score += 1

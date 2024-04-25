@@ -3,7 +3,7 @@ import random
 
 COLORS = ["red", "orange", "yellow", "green", "blue", "purple"]
 STARTING_MOVE_DISTANCE = 5
-MOVE_INCREMENT = 10
+MOVE_INCREMENT = 15
 
 
 class CarManager(turtle.Turtle):
@@ -19,13 +19,13 @@ class CarManager(turtle.Turtle):
         """
         creates a single car object and it's attributes and adds it to the all_cars[] list
         """
-        random_chance = random.randint(self.amount_cars_chance, 20)
-        if random_chance == 20:
+        random_chance = random.randint(self.amount_cars_chance, 10)
+        if random_chance == 10:
             new_car = turtle.Turtle('square')
             new_car.shapesize(1, 2)
             new_car.penup()
             new_car.color(COLORS[random.randint(0, 5)])
-            new_car.speed(STARTING_MOVE_DISTANCE + self.speed)
+            new_car.speed(self.speed)
             new_car.goto(280, random.randint(-250, 250))
             new_car.setheading(180)
             new_car.y_move = self.ycor()
