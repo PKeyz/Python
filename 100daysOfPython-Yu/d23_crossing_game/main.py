@@ -13,6 +13,7 @@ car = car_manager.CarManager()
 scoreboard = scoreboard.Scoreboard()
 
 screen.listen()
+
 #player control buttons
 screen.onkeypress(player.move_up, "w")
 screen.onkeypress(player.move_up, "W")
@@ -28,11 +29,16 @@ while game_is_on:
     car.move_left()
     car.vanish()
 
-    if player.ycor() >= 290:
+    if player.ycor() >= 300:
         scoreboard.increment_score()
-        scoreboard.display()
         player.reset_pos()
+        scoreboard.display()
         car.increase_cars_chance()
         car.increase_cars_speed()
+
+    for cars in car.all_cars:
+        if cars.distance(player) < 15:
+            player.turn_red()
+            scoreboard.game_over()
 
 screen.exitonclick()

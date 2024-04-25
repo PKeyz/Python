@@ -28,3 +28,6 @@ class Player(turtle.Turtle):
         """
         if self.ycor() > 300:
             self.goto(STARTING_POSITION)
+
+    def turn_red(self):
+        self.color('red')
