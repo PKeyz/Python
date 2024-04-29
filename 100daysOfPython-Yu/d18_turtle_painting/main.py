@@ -128,6 +128,6 @@ def draw_spirograph(size_of_gap: float):
 
 draw_spirograph(10)
 
-# must be at the end of the code to visualize, else returns empty screen
+# must be at the end of the Code to visualize, else returns empty screen
 screen = turtle.Screen()
 screen.exitonclick()

@@ -49,6 +49,6 @@ for i in range(10):
 
 
 
-#keep at end of code
+#keep at end of Code
 screen = turtle.Screen()
 screen.exitonclick()

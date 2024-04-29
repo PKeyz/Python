@@ -5,12 +5,12 @@ student_scores = {
   "Draco": 74,
   "Neville": 62,
 }
-# 🚨 Don't change the code above 👆
+# 🚨 Don't change the Code above 👆
 
 #TODO-1: Create an empty dictionary called student_grades.
 student_grades = {}
 
-#TODO-2: Write your code below to add the grades to student_grades.👇
+#TODO-2: Write your Code below to add the grades to student_grades.👇
 for key in student_scores:
     if student_scores[key] in range(91,100):
         grade_value = "Outstanding"
@@ -25,7 +25,7 @@ for key in student_scores:
         grade_value = "Fail"
         student_grades[key] = grade_value
 
-# 🚨 Don't change the code below 👇
+# 🚨 Don't change the Code below 👇
 print(student_grades)
 
 """

@@ -18,7 +18,7 @@ while is_turned_on:
     user_drink_input = input(f'What would you like? ({coffeMenu.get_items()}): ')
     # TODO  2. Turn off the Coffee Machine by entering “ off ” to the prompt.
     # a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off the
-    # machine. Your code should end execution when this happens.
+    # machine. Your Code should end execution when this happens.
     if user_drink_input == 'off':
         is_turned_on = False
     # TODO  3. Print report.

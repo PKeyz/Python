@@ -13,7 +13,7 @@ def prompt_user_drink():
 
 # TODO: 2. Turn off the Coffee Machine by entering “ off ” to the prompt.
 # a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off
-# the machine. Your code should end execution when this happens.
+# the machine. Your Code should end execution when this happens.
 def turn_machine_off():
     turn_off = input("Would you like to turn down the coffe machine? Print 'yes' to turn down: ")
     if (turn_off == 'yes') or (turn_off == 'y'):
