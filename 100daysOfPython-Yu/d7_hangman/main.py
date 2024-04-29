@@ -7,12 +7,12 @@ IDEA:::
 1.have a list of random words and choose one from the list to play the game
 2.hangman ascii art for print / create a list of hangman symbols to iterate over
 3.Ask user input for letter 
-4.display amount of "_" for len(word)
+4.update_scoreboard amount of "_" for len(word)
 5 while counter < hangman[]  Guess a letter: if letter in word : show all instances / else: counter +1 , print hangman[counter]
-5 if letter in word[] display all letter in another array/string -> 1) array word_hidden -> 2) word_display -> 3)hangman_array
+5 if letter in word[] update_scoreboard all letter in another array/string -> 1) array word_hidden -> 2) word_display -> 3)hangman_array
 5 when counter == len(hangman) - "Game Over, Try again!"
 @each letter toLowerCase() in both word array and input for comparisson
-@display 1st letter asCapitalLetter()
+@update_scoreboard 1st letter asCapitalLetter()
 @if more than 1 letter input - counter +1, if letter = number - counter +1 
 """
 
@@ -123,7 +123,7 @@ counter = 0
 #print the hangman status
 print(HANGMANPICS[counter])
 
-#4.display amount of "_" for len(word)
+#4.update_scoreboard amount of "_" for len(word)
 underscores = "_" * len(random_array)
 
 underscores_array = list(underscores)
@@ -135,7 +135,7 @@ underscores_array = list(underscores)
 
 #if more than 1 letter input - counter +1, if letter = number - counter +1 
 # while counter < hangman[]  Guess a letter: if letter in word : show all instances / else: counter +1 , print hangman[counter]
-# if letter in word[] display all letter in another array/string -> 1) array word_hidden -> 2) word_display -> 3)hangman_array
+# if letter in word[] update_scoreboard all letter in another array/string -> 1) array word_hidden -> 2) word_display -> 3)hangman_array
 # when counter == len(hangman) - "Game Over, Try again!"
 
 
