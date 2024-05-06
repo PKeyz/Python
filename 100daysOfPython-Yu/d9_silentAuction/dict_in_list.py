@@ -10,7 +10,7 @@ travel_log = [
   "cities": ["Berlin", "Hamburg", "Stuttgart"]
 },
 ]
-#🚨 Do NOT change the code above
+#🚨 Do NOT change the Code above
 
 #TODO: Write the function that will allow new countries
 #to be added to the travel_log. 👇
@@ -21,6 +21,6 @@ def add_new_country(countryName, visitsNum, citiesList):
 
 
 
-#🚨 Do not change the code below
+#🚨 Do not change the Code below
 add_new_country("Russia", 2, ["Moscow", "Saint Petersburg"])
 print(travel_log)

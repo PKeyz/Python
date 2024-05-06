@@ -5,7 +5,7 @@ import art
 #TODO-2:DONE: What if the user enters a shift that is greater than the number of letters in the alphabet?
 
 #TODO-3: What happens if the user enters a number/symbol/space?
-    #Can you fix the code to keep the number/symbol/space when the text is encoded/decoded?
+    #Can you fix the Code to keep the number/symbol/space when the text is encoded/decoded?
     #e.g. start_text = "meet me at 3"
     #end_text = "•••• •• •• 3"
 
@@ -16,7 +16,7 @@ import art
 #maybe use a do while loop!
 
 #Try running the program and entering a shift number of 45.
-#Add some code so that the program continues to work even if the user enters a shift number greater than 26. 
+#Add some Code so that the program continues to work even if the user enters a shift number greater than 26.
 #Hint: Think about how you can use the modulus (%).
 
 print(art.logo)

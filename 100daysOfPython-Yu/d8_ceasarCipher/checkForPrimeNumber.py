@@ -1,4 +1,4 @@
-#Write your code below this line 👇
+#Write your Code below this line 👇
 import math
 
 def prime_checker(number):
@@ -10,8 +10,8 @@ def prime_checker(number):
     print("It's a prime number.")
 
 
-#Write your code above this line 👆
+#Write your Code above this line 👆
     
-#Do NOT change any of the code below👇
+#Do NOT change any of the Code below👇
 n = int(input("Check this number: "))
 prime_checker(number = n)
