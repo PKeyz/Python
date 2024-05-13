@@ -45,3 +45,17 @@ for name in invited_names_list:
         #adds the text line by line, because it has to be type str, and write(default_letter) is a lst[str] and returns an error
         for line in default_letter:
             invitations.write(line)
+
+# #This is the courses short code... compared to mine above
+# PLACEHOLDER = '[name]'
+#
+# with open("./Input/Names/invited_names.txt") as names_file:
+#     names = names_file.readlines()
+#
+# with open("./Input/Letters/starting_letter.txt") as letter_file:
+#     letter_contents = letter_file.read()
+#     for name in names:
+#         strinpped_name = name.strip()
+#         new_letter = letter_contents.replace(PLACEHOLDER, strinpped_name)
+#         with open(f"./Output/ReadyToSend/letter_for_{strinpped_name}.txt", 'w') as completed_letter:
+#             completed_letter.write(new_letter)
