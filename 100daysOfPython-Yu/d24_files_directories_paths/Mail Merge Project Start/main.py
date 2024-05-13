@@ -1,0 +1,44 @@
+#TODO: Create a letter using starting_letter.txt 
+#for each name in invited_names.txt
+#Replace the [name] placeholder with the actual name.
+#Save the letters in the folder "ReadyToSend".
+
+#Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
+#Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
+#Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
+
+#list of all names to invite
+invited_names_list = []
+with open("../Mail Merge Project Start/Input/Names/invited_names.txt", 'r') as invited_names:
+    for line in invited_names.readlines():
+        name = line.strip('\n')
+        invited_names_list.append(name)
+
+#print(invited_names_list)
+
+#first line from the default invitation
+first_letter_line = []
+
+#whole letter in a list, by line
+default_letter = []
+with open("../Mail Merge Project Start/Input/Letters/starting_letter.txt", 'r') as starting_letter:
+    for line in starting_letter.readlines():
+        default_letter.append(line)
+
+first_letter_line = default_letter[0].partition('[name]')
+#print(first_letter_line)
+
+#converts tuple to list lst
+lst = [*first_letter_line]
+
+for name in invited_names_list:
+    # delete 0-th line, which is the line in first_letter_line
+    default_letter.pop(0)
+
+    lst[1] = name
+
+    default_letter.insert(0, lst[0] + lst[1] + lst[2])
+    print(default_letter)
+    with open(f'../Mail Merge Project Start/Output/ReadyToSend/invitation_{name}.txt', 'w+') as invitations:
+        for line in default_letter:
+            invitations.write(line)
