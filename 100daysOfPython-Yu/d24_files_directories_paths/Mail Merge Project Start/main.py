@@ -41,7 +41,7 @@ for name in invited_names_list:
 
     #prints letter names to the console
     print(default_letter)
-    with open(f'../Mail Merge Project Start/Output/ReadyToSend/invitation_{name}.txt', 'w+') as invitations:
+    with open(f'./Output/ReadyToSend/invitation_{name}.txt', 'w+') as invitations:
         #adds the text line by line, because it has to be type str, and write(default_letter) is a lst[str] and returns an error
         for line in default_letter:
             invitations.write(line)
