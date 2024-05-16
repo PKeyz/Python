@@ -47,6 +47,17 @@ class PopUp:
 
         if answer in (self.read_csv_to_dict()):
             self.count_correct(answer)
+            self.return_coordinates(answer)
 
         else:
             print("Start!")
+
+    def return_coordinates(self, state: str):
+        """returns coordinates of the state, if key available in read_csv_to_dict()"""
+        state_dict = self.read_csv_to_dict()
+        coordinates = state_dict[state]
+        return coordinates
+
+
+
+
