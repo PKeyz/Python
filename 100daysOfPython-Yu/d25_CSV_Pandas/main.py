@@ -61,8 +61,9 @@ count_black = primary_fur.value_counts()['Black']
 # print(count_cinnamon)
 # print(count_gray)
 
-df = pd.DataFrame({'Fur': [0, 1, 2], 'Color': ['gray', 'black', 'cinnamon'], 'Count': [count_gray, count_cinnamon, count_black]})
+df = pd.DataFrame({'Fur Color': ['gray', 'black', 'cinnamon'], 'Count': [count_gray, count_cinnamon, count_black]})
 
+df.to_csv("squirrel_count.csv")
 print(df)
 
 #absofuckinglutely NOT satisfactory! I am dissapointed and my day is ruined
