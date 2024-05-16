@@ -1,4 +1,5 @@
 import turtle
+import pandas
 
 screen = turtle.Screen()
 
@@ -9,6 +10,12 @@ class PopUp:
 
     def read_csv(self):
         """reading the csv file and converting it to a readeable format; returning a dict/list #find out what is better"""
+        states_data = pandas.read_csv('50_states.csv')
+        #read data into 3 columns State, x, y
+        column_state = states_data['state']
+        column_x = states_data['x']
+        column_y = states_data['y']
+
 
     def check_correctness(self):
         """check if user input fits the states in the states dict/list"""
