@@ -3,12 +3,17 @@ import pandas
 
 screen = turtle.Screen()
 
+text = turtle.Turtle
+
 class PopUp:
     def __init__(self):
         super().__init__()
         self.correct_answers = 0
+        self.retry = 0
         self.correct_answers_list = []
         self.show_window()
+
+
 
     def read_csv_to_dict(self):
 
@@ -40,24 +45,24 @@ class PopUp:
     def show_window(self):
         """create a pop-up window in the screen to input answers of the user"""
         #input var for correct states from dict
-        answer = screen.textinput(f"{self.correct_answers}/50 States correct!", "What's another state name?")
-
-        #capitalize doen't work!!!!
-        answer.capitalize()
+        answer = screen.textinput(f"{self.correct_answers}/50 States correct!", "What's another state name?").capitalize()
 
         if answer in (self.read_csv_to_dict()):
             self.count_correct(answer)
-            self.return_coordinates(answer)
+            return answer
 
         else:
-            print("Start!")
+            print("State not in the US! Try again!")
+            self.retry += 1
+            if self.retry == 3:
+                print('To many mistakes, game terminated!')
+
 
     def return_coordinates(self, state: str):
         """returns coordinates of the state, if key available in read_csv_to_dict()"""
         state_dict = self.read_csv_to_dict()
         coordinates = state_dict[state]
         return coordinates
-
 
 
 
