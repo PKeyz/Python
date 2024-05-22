@@ -6,6 +6,7 @@ screen = turtle.Screen()
 text = turtle.Turtle()
 text.hideturtle()
 
+
 class PopUp(turtle.Turtle):
     def __init__(self):
         super().__init__()
@@ -43,20 +44,25 @@ class PopUp(turtle.Turtle):
         self.correct_answers_list.append(state)
         self.correct_answers += 1
 
-    def evaluate_answer(self):
+    def user_input(self):
+        """returns user input"""
         answer = screen.textinput(f"{self.correct_answers}/50 States correct!", "What's another state name?").title()
-        if answer in self.read_csv_to_dict():
-            self.count_correct(answer)
-            return answer
+        return answer
 
-        elif answer not in self.read_csv_to_dict() and answer != 'Exit':
+    def evaluate_answer(self, answer: str):
+        """evaluates the answer and returns True if the answer is in the dictionary, False otherwise"""
+        if answer in self.state_data:
+            self.count_correct(answer)
+            return True
+
+        elif answer not in self.state_data and answer != 'Exit':
             print("State not in the US! Try again!")
             self.retry += 1
+            return False
 
     def return_coordinates(self, state: str):
         """returns coordinates of the state, if key available in read_csv_to_dict()"""
-        state_dict = self.read_csv_to_dict()
-        coordinates = state_dict[state]
+        coordinates = self.state_data[state]
         return coordinates
 
     def print_coordinates(self, coordinates):
@@ -67,5 +73,6 @@ class PopUp(turtle.Turtle):
     def terminate_game(self):
         """finish the game after 3 wrong inputs from the user and return False to the main loop"""
         if self.retry == 3:
-            print('To many mistakes, game terminated!')
-            return False
+            termination = screen.textinput(f"To many mistakes,\ngame terminated!",
+                                      f"{self.correct_answers}/50 States correct!\n{self.retry} states wrong! Try again")
+            return termination
