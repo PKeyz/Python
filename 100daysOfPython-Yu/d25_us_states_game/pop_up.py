@@ -59,6 +59,11 @@ class PopUp(turtle.Turtle):
         coordinates = state_dict[state]
         return coordinates
 
+    def print_coordinates(self, coordinates):
+        """prints the state name on the map at the corresponding x and y coordinates"""
+        text.goto(coordinates['x'], coordinates['y'])
+        text.write(f'{self.correct_answers_list[-1]}', align='center', font=('Arial', 8, 'normal'))
+
     def terminate_game(self):
         """finish the game after 3 wrong inputs from the user and return False to the main loop"""
         if self.retry == 3:
