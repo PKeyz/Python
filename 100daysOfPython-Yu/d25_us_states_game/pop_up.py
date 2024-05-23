@@ -90,16 +90,18 @@ class PopUp(turtle.Turtle):
         correct_states_df.to_csv('correct_states.csv')
 
     def save_failed_states(self):
-        """save the failed answers to a csv file"""
+        """save the missing answers to a csv file without the x and y coordinates"""
         #make a copy of the full csv file
         #reduce it by the names of the correct states
         #save the reduced file
 
         for key in self.correct_answers_list:
-            self.state_data.pop('x')
-            self.state_data.pop('y')
             self.state_data.pop(key)
 
-            failed_states = self.state_data
-            failed_states_df = pandas.DataFrame(failed_states)
-            failed_states_df.to_csv('failed_states.csv')
+        for state in self.state_data:
+            self.state_data[state].pop('x', None)
+            self.state_data[state].pop('y', None)
+
+        failed_states = self.state_data
+        failed_states_df = pandas.DataFrame(failed_states)
+        failed_states_df.to_csv('failed_states.csv')
