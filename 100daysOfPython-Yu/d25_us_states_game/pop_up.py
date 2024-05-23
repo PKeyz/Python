@@ -19,7 +19,7 @@ class PopUp(turtle.Turtle):
 
     def read_csv_to_dict(self):
 
-        """reading the csv file and converting it to a readeable format; returning a dict with states==key: x and y
+        """reading the csv file and converting it to a readable format; returning a dict with states==key: x and y
         == value"""
         states_data = pandas.read_csv('50_states.csv')
 
@@ -50,7 +50,7 @@ class PopUp(turtle.Turtle):
         return answer
 
     def evaluate_answer(self, answer: str):
-        """evaluates the answer and returns True if the answer is in the dictionary, False otherwise"""
+        """evaluates the user input and returns True if the answer is in the dictionary, otherwise False"""
         if answer in self.state_data:
             self.count_correct(answer)
             return True
@@ -74,5 +74,6 @@ class PopUp(turtle.Turtle):
         """finish the game after 3 wrong inputs from the user and return False to the main loop"""
         if self.retry == 3:
             termination = screen.textinput(f"To many mistakes,\ngame terminated!",
-                                      f"{self.correct_answers}/50 States correct!\n{self.retry} states wrong! Try again")
+                                           f"{self.correct_answers}/50 States correct!\n{self.retry} states wrong! "
+                                           f"Try again")
             return termination
