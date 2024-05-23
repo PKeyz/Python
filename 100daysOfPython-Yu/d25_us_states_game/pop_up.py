@@ -76,7 +76,7 @@ class PopUp(turtle.Turtle):
             termination = screen.textinput(f"To many mistakes,\ngame terminated!",
                                            f"{self.correct_answers}/50 States correct!\n{self.retry} states wrong! "
                                            f"Try again")
+            return termination
         elif self.correct_answers == 50:
             return False
 
-            return termination
