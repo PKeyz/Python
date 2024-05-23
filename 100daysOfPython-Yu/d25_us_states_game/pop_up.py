@@ -77,6 +77,7 @@ class PopUp(turtle.Turtle):
                                            f"{self.correct_answers}/50 States correct!\n{self.retry} states wrong! "
                                            f"Try again")
             return termination
+
         elif self.correct_answers == 50:
             return False
 
