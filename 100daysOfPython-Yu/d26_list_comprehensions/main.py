@@ -66,4 +66,23 @@ print(weather_f)
 
 #iterate over pandas dataframe
 import pandas as pd
+student_dict = {
+    'student': ['Alex', 'Beth', 'Caroline', 'Dave', 'Eleanor', 'Freddie'],
+    'score': [56, 78, 98, 67, 89, 92]
+}
+
+student_df = pd.DataFrame(student_dict)
+for (index, row) in student_df.iterrows():
+    print(row.student)
+
+#iterate over pandas dataframe and create new column
+for (index, row) in student_df.iterrows():
+    student_df.at[index, 'score'] = row.score + 1
+print(student_df)
+
+#iterate over pandas dataframe and create new column
+for (index, row) in student_df.iterrows():
+    student_df.at[index, 'score'] = row.score + 1
+print(student_df)
+
 
