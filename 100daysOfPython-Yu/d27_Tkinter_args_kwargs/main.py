@@ -6,22 +6,7 @@ window.minsize(width=500, height=300)
 
 # Label
 my_label = tk.Label(text="This is a label", font=("Arial", 24, "italic"))
-my_label.pack()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+my_label.pack(side='top')
 
 
 
